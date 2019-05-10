@@ -81,7 +81,6 @@ export default {
   padding:0 20px; 
   height:300px; 
   width: 90%;
-  border: 1px solid #50dde6;
   background: linear-gradient(to left, #50dde6, #50dde6) left top no-repeat, 
               linear-gradient(to bottom, #50dde6, #50dde6) left top no-repeat, 
               linear-gradient(to left, #50dde6, #50dde6) right top no-repeat,
@@ -91,6 +90,8 @@ export default {
               linear-gradient(to left, #50dde6, #50dde6) right bottom no-repeat,
               linear-gradient(to left, #50dde6, #50dde6) right bottom no-repeat;
   background-size: 3px 20px, 30px 3px, 3px 20px, 30px 3px;
-  box-shadow:0 0 10px #fff inset;
+  /* box-shadow:0 0 10px #fff inset; */
+  /* border: 1px solid #50dde6; */
+  background-color: #0d4879;
 }
 </style>

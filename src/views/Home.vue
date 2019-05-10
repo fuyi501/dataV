@@ -83,7 +83,7 @@ export default {
 <style>
 .home {
   padding: 20px 20px;
-  background-color: #162d71;
+  background-color: #0a4271;
 }
 </style>
 

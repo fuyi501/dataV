@@ -127,5 +127,6 @@ export default {
               linear-gradient(to left, #50dde6, #50dde6) right bottom no-repeat;
   background-size: 3px 20px, 30px 3px, 3px 20px, 30px 3px;
   /* box-shadow:0 0 10px #fff inset; */
+  background-color: #0d4879;
 }
 </style>

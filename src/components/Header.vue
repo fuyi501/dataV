@@ -4,7 +4,7 @@
       <el-menu
         :default-active="$route.path"
         mode="horizontal"
-        background-color="#162d71"
+        background-color="#0a4271"
         text-color="#4bdaff"
         active-text-color="#4bdaff"
         router
@@ -42,6 +42,6 @@ export default {
   color: #303133;
 }
 .el-menu-item:not(.is-disabled):hover {
-  background-color: #162d71 !important;
+  background-color: #0a4271 !important;
 }
 </style>

@@ -195,7 +195,7 @@ export default {
     //   return res;
     // }
   },
-  backgroundColor:"#162d71",
+  backgroundColor:"#0a4271",
   visualMap: { //图例值控制
     min: 0,
     max: 1,
