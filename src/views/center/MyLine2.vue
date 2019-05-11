@@ -10,16 +10,6 @@
 </template>
 
 <script>
-import 'echarts/lib/chart/line'
-import 'echarts/lib/component/tooltip'
-import 'echarts/lib/component/legend'
-import 'echarts/lib/component/title'
-
-import 'echarts/theme/walden'
-
-// import theme from '@/views/theme/theme.json'
-// registering custom theme
-// ECharts.registerTheme('walden', theme)
 
 export default {
   data () {
@@ -117,10 +107,10 @@ export default {
   margin: 0 auto;
   padding: 0px 20px;
   border: 1px solid #50dde6;
-  background: linear-gradient(to left, #50dde6, #50dde6) left top no-repeat, 
-              linear-gradient(to bottom, #50dde6, #50dde6) left top no-repeat, 
+  background: linear-gradient(to left, #50dde6, #50dde6) left top no-repeat,
+              linear-gradient(to bottom, #50dde6, #50dde6) left top no-repeat,
               linear-gradient(to left, #50dde6, #50dde6) right top no-repeat,
-              linear-gradient(to bottom, #50dde6, #50dde6) right top no-repeat, 
+              linear-gradient(to bottom, #50dde6, #50dde6) right top no-repeat,
               linear-gradient(to left, #50dde6, #50dde6) left bottom no-repeat,
               linear-gradient(to bottom, #50dde6, #50dde6) left bottom no-repeat,
               linear-gradient(to left, #50dde6, #50dde6) right bottom no-repeat,

@@ -5,17 +5,15 @@
 </template>
 
 <script>
-// import 'echarts/lib/component/tooltip'
-// import 'echarts/lib/component/legend'
-import 'echarts/lib/component/title'
 
 import 'echarts/extension/bmap/bmap'
 // require('echarts/extension/bmap/bmap');
+import mytheme from './theme/mytheme.json'
 
 export default {
   data () {
     return {
-      
+
     }
   },
   mounted () {

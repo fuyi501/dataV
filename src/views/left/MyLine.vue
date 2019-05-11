@@ -10,16 +10,6 @@
 </template>
 
 <script>
-import 'echarts/lib/chart/line'
-import 'echarts/lib/component/tooltip'
-import 'echarts/lib/component/legend'
-import 'echarts/lib/component/title'
-
-import 'echarts/theme/walden'
-
-// import theme from '@/views/theme/theme.json'
-// registering custom theme
-// ECharts.registerTheme('walden', theme)
 
 export default {
   data () {
@@ -94,7 +84,7 @@ export default {
     setInterval( () => {
       this.option.series[0].data.shift();
       this.option.series[0].data.push(this.random(100, 1000));
-    }, 3000)
+    }, 1000)
   },
   methods: {
     random(lower, upper) {
@@ -111,10 +101,10 @@ export default {
 }
 .myline1 {
   padding:0px 20px;
-  background: linear-gradient(to left, #50dde6, #50dde6) left top no-repeat, 
-              linear-gradient(to bottom, #50dde6, #50dde6) left top no-repeat, 
+  background: linear-gradient(to left, #50dde6, #50dde6) left top no-repeat,
+              linear-gradient(to bottom, #50dde6, #50dde6) left top no-repeat,
               linear-gradient(to left, #50dde6, #50dde6) right top no-repeat,
-              linear-gradient(to bottom, #50dde6, #50dde6) right top no-repeat, 
+              linear-gradient(to bottom, #50dde6, #50dde6) right top no-repeat,
               linear-gradient(to left, #50dde6, #50dde6) left bottom no-repeat,
               linear-gradient(to bottom, #50dde6, #50dde6) left bottom no-repeat,
               linear-gradient(to left, #50dde6, #50dde6) right bottom no-repeat,

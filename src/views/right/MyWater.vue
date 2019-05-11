@@ -9,12 +9,6 @@
 </template>
 
 <script>
-import 'echarts/lib/chart/pie'
-import 'echarts/lib/component/tooltip'
-import 'echarts/lib/component/legend'
-import 'echarts/lib/component/title'
-
-import 'echarts/theme/walden'
 
 export default {
   data () {
@@ -67,7 +61,7 @@ export default {
     }
   },
   mounted () {
-    
+
   }
 }
 </script>
@@ -78,13 +72,13 @@ export default {
   height: 100%;
 }
 .mypie1 {
-  padding:0 20px; 
+  padding:0 20px;
   height:300px;
   width: 90%;
-  background: linear-gradient(to left, #50dde6, #50dde6) left top no-repeat, 
-              linear-gradient(to bottom, #50dde6, #50dde6) left top no-repeat, 
+  background: linear-gradient(to left, #50dde6, #50dde6) left top no-repeat,
+              linear-gradient(to bottom, #50dde6, #50dde6) left top no-repeat,
               linear-gradient(to left, #50dde6, #50dde6) right top no-repeat,
-              linear-gradient(to bottom, #50dde6, #50dde6) right top no-repeat, 
+              linear-gradient(to bottom, #50dde6, #50dde6) right top no-repeat,
               linear-gradient(to left, #50dde6, #50dde6) left bottom no-repeat,
               linear-gradient(to bottom, #50dde6, #50dde6) left bottom no-repeat,
               linear-gradient(to left, #50dde6, #50dde6) right bottom no-repeat,
