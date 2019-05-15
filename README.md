@@ -1,11 +1,20 @@
 # datav 大数据可视化系统
 
-一直想做一个大屏展示系统，一直没机会做，这次终于尝试了一下，采用 vue、vue-echarts、echarts、element-ui 设计，这个是最简单的版本，只是设计了下布局，增加了几个图标，后面根据需求修改完善系统。
+## element-ui 版本1
+
+一直想做一个大屏展示系统，一直没机会做，这次终于尝试了一下，采用 vue、vue-echarts、echarts、element-ui 设计，这个是最简单的版本，只是设计了下布局，增加了几个图表。
+
+这一版主要使用 element-ui 开发，第二版使用 iview 开发。
+
+第一版没有组件化，代码很乱 :joy: :joy: :joy:
+
+后面主要修改第二版的，这一版就这样吧。 :joy: :joy: :joy:
 
 ## 如何使用
 
 ```
 git clone https://github.com/fuyi501/dataV.git
+git checkout element-ui-v1
 npm install
 npm run serve
 ```
@@ -38,6 +47,3 @@ npm run serve
 
 - [v-charts](https://v-charts.js.org/) 饿了么团队开发，但是文档很久没有更新了，很多配置文件配置起来很模糊，不过也是一个很方便不错的库。
 
-## 项目中使用到的相关数据
-
-背景色：`#0a4271`
