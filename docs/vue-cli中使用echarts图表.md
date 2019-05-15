@@ -230,7 +230,7 @@ ECharts.registerMap('china', chinaMap)
 
 单独写一个 map.js 文件，存放地图展示需要的数据及相关代码，请详见：
 
-[map.js](https://github.com/fuyi501/dataV/blob/master/src/views/center/data/map.js)
+[map.js](../src/views/center/data/map.js)
 
 ### 在 vue 中使用
 
