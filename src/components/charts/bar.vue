@@ -1,23 +1,47 @@
 <template>
-  <div class="myline1">
+  <div class="mybar1" :style="{height: barHeight, width: barWidth}">
     <v-chart
-      :options="option"
+      :options="option1"
       :autoresize="true"
-      :theme="lineTheme"
-      style="height:300px;width:100%;"
-    />
+      style="height:100%;width:100%;"/>
   </div>
 </template>
 
 <script>
 
 export default {
+  name: 'ChartBar',
+  props: {
+    xAxisData: Array,
+    seriesData: {
+      type: Array,
+      default: []
+    },
+    text: {
+      type: String,
+      default: '条形图组件'
+    },
+    subtext: {
+      type: String,
+      default: ''
+    },
+    barHeight: {
+      type: String,
+      default: '300px'
+    },
+    barWidth: {
+      type: String,
+      default: '100%'
+    }
+  },
   data () {
     return {
-      lineTheme: 'walden',
-      option : {
+      option1: {
+        barTheme: 'walden',
+        color: ['#3398DB'],
         title: {
-          text: '条形图',
+          text: this.text,
+          subtext: this.subtext,
           x: 'left',
           y: '5',
           textStyle: {
@@ -26,8 +50,8 @@ export default {
         },
         tooltip : {
           trigger: 'axis',
-          axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-            type : 'line'        // 默认为直线，可选为：'line' | 'shadow'
+          axisPointer : {  // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'  // 默认为直线，可选为：'line' | 'shadow'
           }
         },
         grid: {
@@ -36,8 +60,27 @@ export default {
           bottom: '3%',
           containLabel: true
         },
-        xAxis: {
-          type: 'category',
+        xAxis : [{
+          type : 'category',
+          axisLine: {
+            lineStyle: {
+              color: 'white',
+              width: '1'
+            }
+          },
+          axisLabel: {
+            textStyle: {
+              color: 'white',
+              fontSize: '10'
+            }
+          },
+          data : this.xAxisData,
+          axisTick: {
+            alignWithLabel: true
+          }
+        }],
+        yAxis : [{
+          type : 'value',
           splitLine: {
             show: false
           },
@@ -53,53 +96,31 @@ export default {
               fontSize: '10'
             }
           },
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-        },
-        yAxis: {
-          type: 'value',
-          splitLine: {
-            show: false
-          },
-          axisLine: {
-            lineStyle: {
-              color: 'white',
-              width: '1'
-            }
-          },
-          axisLabel: {
-            textStyle: {
-              color: 'white',
-              fontSize: '10'
-            }
-          },
-        },
-        series: [{
-          data: [820, 932, 901, 934, 1290, 1330, 1320],
-          type: 'line'
-        }]
+        }],
+        series : this.seriesData
       }
     }
   },
   mounted () {
-    setInterval( () => {
-      this.option.series[0].data.shift();
-      this.option.series[0].data.push(this.random(100, 1000));
-    }, 1000)
+    //
   },
   methods: {
-    random(lower, upper) {
-      return Math.floor(Math.random() * (upper - lower)) + lower;
-    }
+    //
   }
 }
 </script>
 
 <style scoped>
+/**
+ * 默认尺寸为 600px×400px，如果想让图表响应尺寸变化，可以像下面这样
+ * 把尺寸设为百分比值（同时请记得为容器设置尺寸）。
+ */
 .echarts {
   width: 100%;
   height: 100%;
 }
-.myline1 {
+.mybar1 {
+  margin: 0 auto;
   padding:0px 20px;
   background: linear-gradient(to left, #50dde6, #50dde6) left top no-repeat,
               linear-gradient(to bottom, #50dde6, #50dde6) left top no-repeat,
@@ -112,6 +133,8 @@ export default {
   background-size: 3px 20px, 30px 3px, 3px 20px, 30px 3px;
   /* box-shadow:0 0 10px #fff inset; */
   /* border: 1px solid #50dde6; */
-  background-color: #0d4879;
+  /* background-color: #0d4879; */
+  background-color: rgba(13, 72, 121, 0.3);
+
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="mygeo">
-    <v-chart :options="map2" :autoresize="true" style="margin: 0 auto;"/>
+    <v-chart :options="mapData" :autoresize="true" style="margin: 0 auto;"/>
   </div>
 </template>
 
@@ -12,25 +12,17 @@ import 'echarts/lib/component/visualMap'
 import 'echarts/lib/component/dataset'
 import 'echarts/map/js/world'
 
-import map from './data/map'
-import map2 from './data/map2'
 import chinaMap from 'echarts/map/json/china.json'
 import ECharts from 'vue-echarts'
 
 ECharts.registerMap('china', chinaMap)
 
 export default {
+  props: {
+    mapData: Object
+  },
   data () {
-    return {
-      map,
-      map2
-    }
-  },
-  mounted () {
-
-  },
-  methods: {
-
+    return {}
   }
 }
 </script>
@@ -45,5 +37,7 @@ export default {
   width: 96%;
   /* border: 2px solid #084272; */
   margin: 0 auto;
+  background-color: rgba(13, 72, 121, 0.3);
+
 }
 </style>

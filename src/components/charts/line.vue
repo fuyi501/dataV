@@ -1,23 +1,50 @@
 <template>
-  <div class="myline2">
+  <div class="myline1" :style="{height: lineHeight, width: lineWidth}">
     <v-chart
       :options="option"
       :autoresize="true"
       :theme="lineTheme"
-      style="height:100%;width:100%;"
     />
   </div>
 </template>
 
 <script>
-
 export default {
+  name: 'ChartLine',
+  props: {
+    xAxisData: Array,
+    seriesData: {
+      type: Array,
+      default: [] // 如果报错，则写成： () => []
+    },
+    text: {
+      type: String,
+      default: '条形图组件'
+    },
+    subtext: {
+      type: String,
+      default: ''
+    },
+    boundaryGap: { // 数据从坐标轴起始
+      type: Boolean,
+      default: true
+    },
+    lineHeight: {
+      type: String,
+      default: '300px'
+    },
+    lineWidth: {
+      type: String,
+      default: '100%'
+    }
+  },
   data () {
     return {
       lineTheme: 'walden',
       option : {
         title: {
-          text: '条形图',
+          text: this.text,
+          subtext: this.subtext,
           x: 'left',
           y: '5',
           textStyle: {
@@ -38,7 +65,7 @@ export default {
         },
         xAxis: {
           type: 'category',
-          boundaryGap: false,
+          boundaryGap: this.boundaryGap,
           splitLine: {
             show: false
           },
@@ -54,7 +81,7 @@ export default {
               fontSize: '10'
             }
           },
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+          data: this.xAxisData
         },
         yAxis: {
           type: 'value',
@@ -74,24 +101,15 @@ export default {
             }
           },
         },
-        series: [{
-          data: [820, 932, 901, 934, 1290, 1330, 1320],
-          type: 'line',
-          areaStyle: {}
-        }]
+        series: this.seriesData
       }
     }
   },
   mounted () {
-    setInterval( () => {
-      this.option.series[0].data.shift();
-      this.option.series[0].data.push(this.random(100, 1000));
-    }, 3000)
+    //
   },
   methods: {
-    random(lower, upper) {
-      return Math.floor(Math.random() * (upper - lower)) + lower;
-    }
+    //
   }
 }
 </script>
@@ -101,12 +119,8 @@ export default {
   width: 100%;
   height: 100%;
 }
-.myline2 {
-  height: 198px;
-  width: 90%;
-  margin: 0 auto;
-  padding: 0px 20px;
-  border: 1px solid #50dde6;
+.myline1 {
+  padding:0px 20px;
   background: linear-gradient(to left, #50dde6, #50dde6) left top no-repeat,
               linear-gradient(to bottom, #50dde6, #50dde6) left top no-repeat,
               linear-gradient(to left, #50dde6, #50dde6) right top no-repeat,
@@ -117,6 +131,8 @@ export default {
               linear-gradient(to left, #50dde6, #50dde6) right bottom no-repeat;
   background-size: 3px 20px, 30px 3px, 3px 20px, 30px 3px;
   /* box-shadow:0 0 10px #fff inset; */
-  background-color: #0d4879;
+  /* border: 1px solid #50dde6; */
+  /* background-color: #0d4879; */
+  background-color: rgba(13, 72, 121, 0.3);
 }
 </style>

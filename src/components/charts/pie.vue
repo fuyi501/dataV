@@ -1,5 +1,5 @@
 <template>
-  <div class="mypie1">
+  <div class="mypie1" :style="{height: pieHeight, width: pieWidth}">
     <v-chart
       :options="pie"
       :theme="pieTheme"
@@ -11,12 +11,34 @@
 <script>
 
 export default {
+  name: 'ChartPie',
+  props: {
+    text: {
+      type: String,
+      default: '饼图组件'
+    },
+    subtext: {
+      type: String,
+      default: ''
+    },
+    legendData: Array,
+    seriesData: Array,
+    pieHeight: {
+      type: String,
+      default: '300px'
+    },
+    pieWidth: {
+      type: String,
+      default: '100%'
+    }
+  },
   data () {
     return {
       pieTheme: 'walden',
       pie : {
         title: {
-          text: '饼图',
+          text: this.text,
+          subtext: this.subtext,
           x: 'left',
           y: '5',
           textStyle: {
@@ -33,7 +55,7 @@ export default {
           textStyle: {
             color: '#fff'
           },
-          data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+          data: this.legendData
         },
         series: [
           {
@@ -41,13 +63,7 @@ export default {
             type: 'pie',
             radius: '55%',
             center: ['50%', '60%'],
-            data: [
-              { value: 335, name: '直接访问' },
-              { value: 310, name: '邮件营销' },
-              { value: 234, name: '联盟广告' },
-              { value: 135, name: '视频广告' },
-              { value: 1548, name: '搜索引擎' }
-            ],
+            data: this.seriesData,
             itemStyle: {
               emphasis: {
                 shadowBlur: 10,
@@ -61,7 +77,7 @@ export default {
     }
   },
   mounted () {
-
+    //
   }
 }
 </script>
@@ -86,6 +102,8 @@ export default {
   background-size: 3px 20px, 30px 3px, 3px 20px, 30px 3px;
   /* box-shadow:0 0 10px #fff inset; */
   /* border: 1px solid #50dde6; */
-  background-color: #0d4879;
+  /* background-color: #0d4879; */
+  background-color: rgba(13, 72, 121, 0.3);
+
 }
 </style>

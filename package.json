@@ -1,5 +1,5 @@
 {
-  "name": "datav",
+  "name": "datav2",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,11 +9,14 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
+    "countup": "^1.8.2",
+    "countup.js": "^2.0.4",
     "echarts": "^4.2.1",
-    "element-ui": "^2.8.2",
+    "iview": "^3.4.1",
     "vue": "^2.6.10",
     "vue-echarts": "^4.0.2",
     "vue-router": "^3.0.3",
+    "vue-video-player": "^5.0.2",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

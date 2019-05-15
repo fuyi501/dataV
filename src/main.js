@@ -2,8 +2,9 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
+
+import iView from 'iview';
+import 'iview/dist/styles/iview.css';
 
 import echarts from 'echarts';
 Vue.prototype.$echarts = echarts
@@ -33,18 +34,28 @@ import 'echarts/theme/walden'
 
 // 导入自定义主题
 // ./views/theme/ 下保存的是自定义的主题
-import roma from './views/theme/roma.json'
-import wonderland from './views/theme/wonderland.json'
+import roma from './views/Home/theme/roma.json'
+import wonderland from './views/Home/theme/wonderland.json'
 
 // registering custom theme
 ECharts.registerTheme('roma', roma)
 ECharts.registerTheme('wonderland', wonderland)
 
+// 视频播放 vue-video-player
+import VueVideoPlayer from 'vue-video-player'
+// require videojs style
+import 'video.js/dist/video-js.css'
+// import 'vue-video-player/src/custom-theme.css'
+
+Vue.use(VueVideoPlayer /* {
+  options: global default options,
+  events: global videojs events
+} */)
+
 // 注册组件后即可使用
 Vue.component('v-chart', ECharts)
 
-Vue.use(ElementUI);
-
+Vue.use(iView);
 Vue.config.productionTip = false;
 
 new Vue({

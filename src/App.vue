@@ -1,17 +1,20 @@
 <template>
-  <el-container id="app" ref="homePage">
-    <el-main>
-      <MyHeader></MyHeader>
-      <router-view />
-    </el-main>
-  </el-container>
+  <div id="app">
+    <Layout>
+      <Header :style="{width: '100%'}">
+        <MyHeader />
+      </Header>
+      <Content>
+        <router-view />
+      </Content>
+    </Layout>
+  </div>
 </template>
 
 <script>
-import MyHeader from "@/components/Header.vue";
+import MyHeader from "@/components/header/Header.vue";
 
 export default {
-  name: "app",
   components: {
     MyHeader
   }
@@ -20,18 +23,14 @@ export default {
 
 <style lang="less">
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: "microsoft yahei", Arial, sans-serif, "Avenir", Helvetica;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #0a4271;
+  // background-color: red;
+  // background-image: url('./assets/wrapper-bg.png');
+  height: 780px;
 }
-.el-main {
-  padding: 0px !important;
-  /* margin-top: -68px; */
-  /* z-index: 0 */
-}
-body {
-  margin: 0px;
-}
+
 </style>
