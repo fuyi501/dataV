@@ -294,7 +294,7 @@ export default {
 
 ![](http://img.fuwenwei.com/blog/20190511114537.GIF)
 
-同样的它的数据文件请看：[map2.js](https://github.com/fuyi501/dataV/blob/master/src/views/center/data/map2.js)
+同样的它的数据文件请看：[map2.js](../src/views/center/data/map2.js)
 
 ## echarts 的使用
 
