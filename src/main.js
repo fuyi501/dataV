@@ -34,8 +34,8 @@ import 'echarts/theme/walden'
 
 // 导入自定义主题
 // ./views/theme/ 下保存的是自定义的主题
-import roma from './views/Home/theme/roma.json'
-import wonderland from './views/Home/theme/wonderland.json'
+import roma from '@/components/charts/theme/roma.json'
+import wonderland from '@/components/charts/theme/wonderland.json'
 
 // registering custom theme
 ECharts.registerTheme('roma', roma)

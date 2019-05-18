@@ -8,7 +8,7 @@
 
 import 'echarts/extension/bmap/bmap'
 // require('echarts/extension/bmap/bmap');
-import mytheme from './theme/mytheme.json'
+// import mytheme from './theme/mytheme.json'
 
 export default {
   data () {

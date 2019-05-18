@@ -1,33 +1,20 @@
 <template>
-  <div class="home" :style="{height: contentHeight}">
+  <div class="home">
     <!-- 左侧 -->
     <Row type="flex" justify="start">
       <Col :span="6">
         <Row >
-          <chart-line
-            :text="lineData1.title"
-            :subtext="lineData1.subtitle"
-            :legendData="lineData1.legendData"
-            :xAxisData="lineData1.xAxisData"
-            :seriesData="[...lineData1.seriesData]"
-          />
+          <chart-line :text="lineData1.title" :xAxisData="lineData1.xAxisData" :seriesData="[...lineData1.seriesData]" style="margin:0 auto;"/>
         </Row>
         <Row style="margin: 10px 0px;">
-          <chart-bar
-            :text="barData.title"
-            :subtext="barData.subtitle"
-            :legendData="barData.legendData"
-            :xAxisData="barData.xAxisData"
-            :seriesData="[...barData.seriesData]"
-          />
+          <chart-bar :text="barData.title" :xAxisData="barData.xAxisData" :seriesData="[...barData.seriesData]" style="margin:0 auto;"/>
         </Row>
       </Col>
 
       <!-- 中间 -->
       <Col :span="12">
         <Row >
-          <!-- <MapGeo :mapData="map"></MapGeo> -->
-          <InMap></InMap>
+          <BMap></BMap>
         </Row>
         <Row style="margin: 10px 0px;">
           <chart-line :text="lineData2.title" :xAxisData="lineData2.xAxisData" :seriesData="[...lineData2.seriesData]" style="margin:0 auto;" lineWidth="96%" lineHeight="220px"/>
@@ -48,11 +35,8 @@
 </template>
 
 <script>
-import { BMap, MapGeo, InMap } from '@/components/map'
+import { BMap, MapGeo } from '@/components/map'
 import { ChartLine, ChartBar, ChartPie } from "@/components/charts";
-
-import map from './data/map'
-import map2 from './data/map2'
 
 export default {
   name: "home",
@@ -61,21 +45,15 @@ export default {
     ChartBar,
     ChartPie,
     BMap,
-    MapGeo,
-    InMap
+    MapGeo
   },
   data() {
     return {
-      map,
-      map2,
-      contentHeight: "",
       lineData1: {
         title: '每周用户活跃量',
-        subtitle: '我是副标题',
-        legendData: ['2018'],
         xAxisData: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
         seriesData: [
-          { name: '2018', data: [820, 932, 901, 934, 1290, 1330, 1320], type: 'line' }
+          { data: [820, 932, 901, 934, 1290, 1330, 1320], type: 'line' }
         ]
       },
       lineData2: {
@@ -88,12 +66,10 @@ export default {
       },
       barData: {
         title: '每周用户活跃量',
-        subtitle: '我是副标题',
-        legendData: ['2018', '2019'],
         xAxisData: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
         seriesData: [
-          { name: '2018', data: [820, 932, 901, 934, 1290, 1330, 1320], type: 'bar' },
-          { name: '2019', data: [120, 232, 401, 534, 5290, 3330, 2320], type: 'bar' }
+          { data: [820, 932, 901, 934, 1290, 1330, 1320], type: 'bar' },
+          { data: [120, 232, 401, 534, 5290, 3330, 2320], type: 'bar' }
         ]
       },
       pieData: {
@@ -110,18 +86,8 @@ export default {
     }
   },
   watch: {
-    // 如果 `clientHeight` 发生改变，这个函数就会运行
-    contentHeight: function() {
-      return `${document.documentElement.clientHeight - 60}px`;
-    }
   },
   mounted() {
-    // 获取浏览器可视区域高度
-    this.contentHeight = `${document.documentElement.clientHeight - 60}px`;
-    console.log(this.contentHeight);
-    window.onresize = function temp() {
-      this.contentHeight = `${document.documentElement.clientHeight - 60}px`;
-    };
   },
 };
 </script>

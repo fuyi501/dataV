@@ -25,6 +25,7 @@ export default {
       type: String,
       default: ''
     },
+    legendData: Array,
     boundaryGap: { // 数据从坐标轴起始
       type: Boolean,
       default: true
@@ -56,6 +57,14 @@ export default {
           axisPointer : {            // 坐标轴指示器，坐标轴触发有效
             type : 'line'        // 默认为直线，可选为：'line' | 'shadow'
           }
+        },
+        legend: {
+          orient: 'horizontal',
+          top: '40',
+          textStyle: {
+            color: '#fff'
+          },
+          data: this.legendData
         },
         grid: {
           left: '0%',

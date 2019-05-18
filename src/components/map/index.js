@@ -1,3 +1,4 @@
 import BMap from './MyBMap.vue'
 import MapGeo from './MyGeo.vue'
-export { BMap , MapGeo }
+import InMap from './InMap.vue'
+export { BMap , MapGeo, InMap }

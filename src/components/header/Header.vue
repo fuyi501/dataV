@@ -14,7 +14,7 @@
         <Icon type="md-alert" />
         报警事件
       </MenuItem>
-      <MenuItem name="4">
+      <MenuItem name="4" to="/analysis">
         <!-- <Icon type="md-analytics" /> -->
         <Icon type="md-stats" />
         智能分析
