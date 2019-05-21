@@ -2,9 +2,9 @@
   <div class="home" :style="{height: contentHeight}">
     <!-- 左侧 -->
     <Row type="flex" justify="start" :gutter="20">
-      <Col :span="16">
+      <Col :span="24">
         <Row   type="flex" justify="start" :gutter="20" >
-          <i-col :span="8" v-for="(item, i) in videoInfo" :key="`info-${i}`" style="margin-bottom:30px;">
+          <i-col :span="6" v-for="(item, i) in videoInfo" :key="`info-${i}`" style="margin-bottom:30px;">
             <Card>
               <p slot="title" style="">{{ item.title }}</p>
               <div >
@@ -16,7 +16,7 @@
       </Col>
 
       <!-- 右侧 -->
-      <Col :span="8">
+      <!-- <Col :span="8">
         <Row :gutter="20">
           <i-col :span="12" v-for="(infor, i) in inforCardData" :key="`infor-${i}`" style="height: 120px;padding-bottom: 10px;">
             <infor-card shadow :leftColor="infor.leftColor" :rightColor="infor.rightColor" :icon="infor.icon" :icon-size="56">
@@ -28,7 +28,8 @@
         <Row style="margin: 10px 0px;">
           <chart-line :text="lineData.title" :xAxisData="lineData.xAxisData" :seriesData="[...lineData.seriesData]"/>
         </Row>
-      </Col>
+      </Col> -->
+
     </Row>
   </div>
 </template>
@@ -51,12 +52,16 @@ export default {
     return {
       contentHeight: "",
       videoInfo: [
-        { title: '加油站1', videoSrc: 'rtmp://live.hkstv.hk.lxdns.com/live/hks1'},
-        { title: '加油站2', videoSrc: 'rtmp://58.200.131.2:1935/livetv/hunantv'},
-        { title: '加油站3', videoSrc: 'rtmp://58.200.131.2:1935/livetv/hunantv'},
-        { title: '加油站4', videoSrc: 'rtmp://live.hkstv.hk.lxdns.com/live/hks1'},
-        { title: '加油站5', videoSrc: 'rtmp://58.200.131.2:1935/livetv/hunantv'},
-        { title: '加油站6', videoSrc: 'rtmp://live.hkstv.hk.lxdns.com/live/hks1'}
+        // { title: '加油站1', videoSrc: 'rtmp://live.hkstv.hk.lxdns.com/live/hks1'},
+        // { title: '加油站2', videoSrc: 'rtmp://58.200.131.2:1935/livetv/hunantv'},
+        { title: '明德门收银台', videoSrc: 'rtmp://10.202.114.186/live/mingdemen_1'},
+        { title: '明德门站', videoSrc: 'rtmp://10.202.114.186/live/mingdemen_2'},
+        { title: '明德门全景1', videoSrc: 'rtmp://10.202.114.186/live/mingdemen_3'},
+        { title: '明德门站1', videoSrc: 'rtmp://10.202.114.186/live/mingdemen_4'},
+        { title: '明德门站2', videoSrc: 'rtmp://10.202.114.186/live/mingdemen_5'},
+        { title: '明德门站3', videoSrc: 'rtmp://10.202.114.186/live/mingdemen_6'},
+        { title: '明德门站4', videoSrc: 'rtmp://10.202.114.186/live/mingdemen_7'},
+        { title: '明德门站', videoSrc: 'rtmp://10.202.114.186/live/mingdemen_9'}
       ],
       inforCardData: [
         { title: '新增用户', icon: 'md-person-add', count: 803, leftColor: '#2d8cf0', rightColor: '#2d8cf0' },

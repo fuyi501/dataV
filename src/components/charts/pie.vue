@@ -2,7 +2,7 @@
   <div class="mypie1" :style="{height: pieHeight, width: pieWidth}">
     <v-chart
       :options="pie"
-      :theme="pieTheme"
+
       :autoresize="true"
     />
   </div>
@@ -59,7 +59,7 @@ export default {
         },
         series: [
           {
-            name: '访问来源',
+            name: '事件分布',
             type: 'pie',
             radius: '55%',
             center: ['50%', '60%'],

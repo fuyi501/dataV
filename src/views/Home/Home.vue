@@ -4,22 +4,13 @@
     <Row type="flex" justify="start">
       <Col :span="6">
         <Row >
-          <chart-line
-            :text="lineData1.title"
-            :subtext="lineData1.subtitle"
-            :legendData="lineData1.legendData"
-            :xAxisData="lineData1.xAxisData"
-            :seriesData="[...lineData1.seriesData]"
-          />
+          <pass7-day-data-line></pass7-day-data-line>
         </Row>
-        <Row style="margin: 10px 0px;">
-          <chart-bar
-            :text="barData.title"
-            :subtext="barData.subtitle"
-            :legendData="barData.legendData"
-            :xAxisData="barData.xAxisData"
-            :seriesData="[...barData.seriesData]"
-          />
+        <Row style="margin: 20px 0px;">
+          <pass7-day-data-bar></pass7-day-data-bar>
+        </Row>
+        <Row style="margin: 20px 0px;">
+          <refuel-overview-event-pie></refuel-overview-event-pie>
         </Row>
       </Col>
 
@@ -29,18 +20,21 @@
           <!-- <MapGeo :mapData="map"></MapGeo> -->
           <InMap></InMap>
         </Row>
-        <Row style="margin: 10px 0px;">
-          <chart-line :text="lineData2.title" :xAxisData="lineData2.xAxisData" :seriesData="[...lineData2.seriesData]" style="margin:0 auto;" lineWidth="96%" lineHeight="220px"/>
+        <Row style="margin: 20px 0px;">
+          <today-data-line></today-data-line>
         </Row>
       </Col>
 
       <!-- 右侧 -->
       <Col :span="6">
         <Row>
-          <chart-pie :text="pieData.title" :legendData="pieData.legendData" :seriesData="pieData.seriesData"></chart-pie>
+          <safe-box-event-pie></safe-box-event-pie>
         </Row>
-        <Row style="margin: 10px 0px;">
-          <chart-pie :text="pieData.title" :legendData="pieData.legendData" :seriesData="pieData.seriesData"></chart-pie>
+        <Row style="margin: 20px 0px;">
+          <checkout-event-pie></checkout-event-pie>
+        </Row>
+        <Row style="margin: 20px 0px;">
+          <unload-event-pie></unload-event-pie>
         </Row>
       </Col>
     </Row>
@@ -49,64 +43,32 @@
 
 <script>
 import { BMap, MapGeo, InMap } from '@/components/map'
-import { ChartLine, ChartBar, ChartPie } from "@/components/charts";
+import constData from '@/util/constData' // 保存的常量
 
-import map from './data/map'
-import map2 from './data/map2'
+// 页面组件
+import TodayDataLine from './components/todayDataLine.vue'
+import Pass7DayDataLine from './components/pass7DayLine'
+import Pass7DayDataBar from './components/pass7DayBar'
+import SafeBoxEventPie from './components/safeBoxEventPie'
+import CheckoutEventPie from './components/checkoutEventPie'
+import UnloadEventPie from './components/unloadEventPie'
+import RefuelOverviewEventPie from './components/refuelOverviewEventPie'
 
 export default {
   name: "home",
   components: {
-    ChartLine,
-    ChartBar,
-    ChartPie,
-    BMap,
-    MapGeo,
+    TodayDataLine,
+    Pass7DayDataLine,
+    Pass7DayDataBar,
+    SafeBoxEventPie,
+    CheckoutEventPie,
+    UnloadEventPie,
+    RefuelOverviewEventPie,
     InMap
   },
   data() {
     return {
-      map,
-      map2,
-      contentHeight: "",
-      lineData1: {
-        title: '每周用户活跃量',
-        subtitle: '我是副标题',
-        legendData: ['2018'],
-        xAxisData: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-        seriesData: [
-          { name: '2018', data: [820, 932, 901, 934, 1290, 1330, 1320], type: 'line' }
-        ]
-      },
-      lineData2: {
-        title: '每周用户活跃量',
-        xAxisData: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-        seriesData: [
-          { data: [820, 932, 901, 934, 1290, 1330, 1320], type: 'line' },
-          { data: [120, 232, 401, 534, 5290, 3330, 2320], type: 'line', areaStyle: {} }
-        ]
-      },
-      barData: {
-        title: '每周用户活跃量',
-        subtitle: '我是副标题',
-        legendData: ['2018', '2019'],
-        xAxisData: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-        seriesData: [
-          { name: '2018', data: [820, 932, 901, 934, 1290, 1330, 1320], type: 'bar' },
-          { name: '2019', data: [120, 232, 401, 534, 5290, 3330, 2320], type: 'bar' }
-        ]
-      },
-      pieData: {
-        title: '我的饼图',
-        legendData: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎'],
-        seriesData: [
-          { value: 335, name: '直接访问' },
-          { value: 310, name: '邮件营销' },
-          { value: 234, name: '联盟广告' },
-          { value: 135, name: '视频广告' },
-          { value: 1548, name: '搜索引擎' }
-        ]
-      }
+      contentHeight: ""
     }
   },
   watch: {
@@ -118,11 +80,14 @@ export default {
   mounted() {
     // 获取浏览器可视区域高度
     this.contentHeight = `${document.documentElement.clientHeight - 60}px`;
-    console.log(this.contentHeight);
+    console.log(this.contentHeight)
     window.onresize = function temp() {
       this.contentHeight = `${document.documentElement.clientHeight - 60}px`;
-    };
+    }
   },
+  methods: {
+
+  }
 };
 </script>
 
@@ -131,8 +96,9 @@ export default {
   padding: 20px;
   /* margin: -20px 0px; */
   /* background-color: #0a4271; */
-  background-color: #0b0f34 !important;
-  /* background: url('../../assets/wrapper-bg.png') center no-repeat; */
+  /* background-color: #0b0f34 !important; */
+  /* background-color: #01237C !important; */
+  background: url('../../assets/bg.jpg') center;
   /* background-size: 100% 100%; */
   /* box-sizing: border-box; */
   /* height: 100%; */

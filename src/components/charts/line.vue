@@ -3,12 +3,12 @@
     <v-chart
       :options="option"
       :autoresize="true"
-      :theme="lineTheme"
     />
   </div>
 </template>
 
 <script>
+// :theme="lineTheme"
 export default {
   name: 'ChartLine',
   props: {
@@ -84,6 +84,15 @@ export default {
               width: '1'
             }
           },
+          axisTick: { // 坐标轴刻度相关设置。
+            alignWithLabel: true, // 类目轴中在 boundaryGap 为 true 的时候有效，可以保证刻度线和标签对齐。
+            inside: false, // 坐标轴刻度是否朝内，默认朝外。
+            length: 5, // 坐标轴刻度的长度。
+            lineStyle: { // 刻度线的样式。
+              color: 'white',
+              width: 1
+            }
+          },
           axisLabel: {
             textStyle: {
               color: 'white',
@@ -94,6 +103,7 @@ export default {
         },
         yAxis: {
           type: 'value',
+          // min: '1',
           splitLine: {
             show: false
           },
@@ -101,6 +111,15 @@ export default {
             lineStyle: {
               color: 'white',
               width: '1'
+            }
+          },
+          axisTick: { // 坐标轴刻度相关设置。
+            alignWithLabel: true, // 类目轴中在 boundaryGap 为 true 的时候有效，可以保证刻度线和标签对齐。
+            inside: false, // 坐标轴刻度是否朝内，默认朝外。
+            length: 5, // 坐标轴刻度的长度。
+            lineStyle: { // 刻度线的样式。
+              color: 'white',
+              width: 1
             }
           },
           axisLabel: {

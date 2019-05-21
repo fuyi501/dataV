@@ -1,127 +1,46 @@
 <template>
-  <div>
-    <Table :row-class-name="rowClassName"  :columns="columns10" :data="data9"></Table>
-    <Page :total="100" show-elevator show-total style="text-align:left;margin:10px 0px;;"/>
+  <div style="min-height:120px;">
+    <Table
+      :row-class-name="rowClassName"
+      :columns="colData"
+      :data="tableData"
+      @on-row-click="handleTableClick"
+    ></Table>
   </div>
 </template>
 <script>
-    import expandRow from './table-expand.vue';
-    export default {
-        components: { expandRow },
-        data () {
-            return {
-                columns10: [
-                    {
-                        type: 'expand',
-                        width: 50,
-                        render: (h, params) => {
-                            return h(expandRow, {
-                                props: {
-                                    row: params.row
-                                }
-                            })
-                        }
-                    },
-                    {
-                        title: 'Name',
-                        key: 'name'
-                    },
-                    {
-                        title: 'Age',
-                        key: 'age'
-                    },
-                    {
-                        title: 'Address',
-                        key: 'address'
-                    }
-                ],
-                data9: [
-                    {
-                        name: 'John Brown',
-                        age: 18,
-                        address: 'New York No. 1 Lake Park',
-                        job: 'Data engineer',
-                        interest: 'badminton',
-                        birthday: '1991-05-14',
-                        book: 'Steve Jobs',
-                        movie: 'The Prestige',
-                        music: 'I Cry'
-                    },
-                    {
-                        name: 'Jim Green',
-                        age: 25,
-                        address: 'London No. 1 Lake Park',
-                        job: 'Data Scientist',
-                        interest: 'volleyball',
-                        birthday: '1989-03-18',
-                        book: 'My Struggle',
-                        movie: 'Roman Holiday',
-                        music: 'My Heart Will Go On'
-                    },
-                    {
-                        name: 'Jim Green',
-                        age: 25,
-                        address: 'London No. 1 Lake Park',
-                        job: 'Data Scientist',
-                        interest: 'volleyball',
-                        birthday: '1989-03-18',
-                        book: 'My Struggle',
-                        movie: 'Roman Holiday',
-                        music: 'My Heart Will Go On'
-                    },
-                    {
-                        name: 'Jim Green',
-                        age: 25,
-                        address: 'London No. 1 Lake Park',
-                        job: 'Data Scientist',
-                        interest: 'volleyball',
-                        birthday: '1989-03-18',
-                        book: 'My Struggle',
-                        movie: 'Roman Holiday',
-                        music: 'My Heart Will Go On'
-                    },
-                    {
-                        name: 'Jim Green',
-                        age: 25,
-                        address: 'London No. 1 Lake Park',
-                        job: 'Data Scientist',
-                        interest: 'volleyball',
-                        birthday: '1989-03-18',
-                        book: 'My Struggle',
-                        movie: 'Roman Holiday',
-                        music: 'My Heart Will Go On'
-                    },
-                    {
-                        name: 'Joe Black',
-                        age: 30,
-                        address: 'Sydney No. 1 Lake Park',
-                        job: 'Data Product Manager',
-                        interest: 'tennis',
-                        birthday: '1992-01-31',
-                        book: 'Win',
-                        movie: 'Jobs',
-                        music: 'Don’t Cry'
-                    },
-                    {
-                        name: 'Jon Snow',
-                        age: 26,
-                        address: 'Ottawa No. 2 Lake Park',
-                        job: 'Data Analyst',
-                        interest: 'snooker',
-                        birthday: '1988-7-25',
-                        book: 'A Dream in Red Mansions',
-                        movie: 'A Chinese Ghost Story',
-                        music: 'actor'
-                    }
-                ]
-            }
-        },
-        methods: {
-            rowClassName (row, index) {
-              return 'demo-table-info-row';
-            }
-        }
+import dayjs from 'dayjs'
+
+export default {
+  props: {
+    tableData: {
+      type: Array
     }
+  },
+  data () {
+    return {
+      colData:
+      [
+        { title: '事件序号', key: 'index' },
+        { title: '站点名称', key: 'station' },
+        { title: '事件名称', key: 'action' },
+        { title: '事件原因', key: 'cause' },
+        // { title: '事件等级', key: 'level' },
+        { title: '事件状态', key: 'status' },
+        { title: '发生时间', key: 'datetime' }
+      ]
+    }
+  },
+  methods: {
+    rowClassName (row, index) {
+      return 'demo-table-info-row';
+    },
+    handleTableClick (rowData, index) {
+      console.log('表格单击事件', rowData, index)
+      this.$emit("handleTableClickEvent", rowData)
+    }
+  }
+}
 </script>
 
 <style lang="less">
@@ -173,7 +92,7 @@
   background-color: #01237C !important;
 }
 .ivu-page-item {
-  background-color: green !important;
+  background-color: #1081B2 !important;
   color: red !important;
 }
 .ivu-page-item a {
@@ -183,8 +102,20 @@
   color: blue !important;
 }
 .ivu-page-options-elevator input {
-  background-color: green !important;
+  background-color: #1081B2 !important;
   color: #fff !important;
+}
+.ivu-table td {
+  background-color: #01237C !important;
+}
+.ivu-table-overflowX {
+  overflow-x: hidden !important;
+}
+.ivu-table-tip table td {
+  font-size: 16px;
+}
+.ivu-table-tip {
+  overflow: hidden !important;
 }
 </style>
 
