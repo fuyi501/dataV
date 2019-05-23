@@ -10,14 +10,18 @@
         <Icon type="md-videocam" />
         智能监控
       </MenuItem>
-      <MenuItem name="3" to="/events">
-        <Icon type="md-alert" />
-        报警事件
-      </MenuItem>
       <MenuItem name="4" to="/analysis">
         <!-- <Icon type="md-analytics" /> -->
         <Icon type="md-stats" />
         智能分析
+      </MenuItem>
+      <MenuItem name="3" to="/events">
+        <Icon type="md-alert" />
+        报警事件
+      </MenuItem>
+      <MenuItem name="4" to="/test">
+        <Icon type="md-alert" />
+        测试页面
       </MenuItem>
     </div>
   </Menu>
@@ -30,7 +34,6 @@ export default {
   }
 }
 </script>
-
 
 <style lang="less">
 .ivu-menu-horizontal {
@@ -70,7 +73,7 @@ export default {
 }
 
 .layout-nav{
-    width: 620px;
+    width: 820px;
     padding-left: 30px;
     margin: 0 auto;
     float: left;

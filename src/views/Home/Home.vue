@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { BMap, MapGeo, InMap } from '@/components/map'
+import { BMap, MapGeo, InMap } from '@/components/charts/map'
 import constData from '@/util/constData' // 保存的常量
 
 // 页面组件
@@ -101,7 +101,7 @@ export default {
   background: url('../../assets/bg.jpg') center;
   /* background-size: 100% 100%; */
   /* box-sizing: border-box; */
-  /* height: 100%; */
+  height: 3000px;
 }
 </style>
 

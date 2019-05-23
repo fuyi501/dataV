@@ -2,8 +2,10 @@
   <Row :gutter="20" style="margin: 10px 10px;">
     <i-col :span="8" v-for="(infor, i) in inforCardData" :key="`infor-${i}`" style="height: 120px;padding-bottom: 10px;">
       <infor-card shadow :leftColor="infor.leftColor" :rightColor="infor.rightColor" :icon="infor.icon" :icon-size="56">
-        <count-to :end="infor.count" count-class="count-style"/>
-        <p style="color:#fff">{{ infor.title }}</p>
+        <count-to :end="infor.count" count-class="count-style">
+          <span slot="right" style="margin-left:5px;color:#fff;">较昨日下降3次</span>
+        </count-to>
+        <p style="color:#fff;font-size:18px;">{{ infor.title }}</p>
       </infor-card>
     </i-col>
   </Row>

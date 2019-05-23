@@ -29,7 +29,7 @@ export default {
         skin: "Blueness",
         center: [108.881385,34.236727], //地图中心点
         zoom: {
-          value: 13, //当前地图级别
+          value: 7, //当前地图级别
           show: true, //放大缩小按钮显示
           max: 18,
           min: 5

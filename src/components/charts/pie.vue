@@ -1,8 +1,8 @@
 <template>
-  <div class="mypie1" :style="{height: pieHeight, width: pieWidth}">
+  <div class="" :style="{height: pieHeight, width: pieWidth}">
     <v-chart
-      :options="pie"
-
+      :options="pieOption"
+      theme="chartsTheme"
       :autoresize="true"
     />
   </div>
@@ -34,16 +34,10 @@ export default {
   },
   data () {
     return {
-      pieTheme: 'walden',
-      pie : {
+      pieOption : {
         title: {
           text: this.text,
-          subtext: this.subtext,
-          x: 'left',
-          y: '5',
-          textStyle: {
-            color: '#50dde6'
-          }
+          subtext: this.subtext
         },
         tooltip : {
           trigger: 'item',
@@ -51,18 +45,14 @@ export default {
         },
         legend: {
           orient: 'horizontal',
-          top: '40',
-          textStyle: {
-            color: '#fff'
-          },
           data: this.legendData
         },
         series: [
           {
             name: '事件分布',
             type: 'pie',
-            radius: '55%',
-            center: ['50%', '60%'],
+            radius: ['40%', '55%'],
+            center: ['50%', '50%'],
             data: this.seriesData,
             itemStyle: {
               emphasis: {
@@ -70,7 +60,39 @@ export default {
                 shadowOffsetX: 0,
                 shadowColor: 'rgba(0, 0, 0, 0.5)'
               }
-            }
+            },
+            label: {
+              normal: {
+                show: true,
+                formatter: "{b}\n{c}次 ({d}%)"
+                // offset: [-cellSize[0] / 2 + 10, -cellSize[1] / 2 + 10],
+
+              }
+            },
+          },
+          {
+            name: '事件分布',
+            type: 'pie',
+            radius: ['0%', '30%'],
+            center: ['50%', '50%'],
+            data: [
+              {value: 200, name: '合规', selected: true},
+              {value: 600, name: '违规'}
+            ],
+            itemStyle: {
+              emphasis: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            },
+            label: {
+              normal: {
+                show: true,
+                position: "inner"
+
+              }
+            },
           }
         ]
       }
@@ -83,27 +105,5 @@ export default {
 </script>
 
 <style scoped>
-.echarts {
-  width: 100%;
-  height: 100%;
-}
-.mypie1 {
-  padding:0 20px;
-  height:300px;
-  width: 90%;
-  background: linear-gradient(to left, #50dde6, #50dde6) left top no-repeat,
-              linear-gradient(to bottom, #50dde6, #50dde6) left top no-repeat,
-              linear-gradient(to left, #50dde6, #50dde6) right top no-repeat,
-              linear-gradient(to bottom, #50dde6, #50dde6) right top no-repeat,
-              linear-gradient(to left, #50dde6, #50dde6) left bottom no-repeat,
-              linear-gradient(to bottom, #50dde6, #50dde6) left bottom no-repeat,
-              linear-gradient(to left, #50dde6, #50dde6) right bottom no-repeat,
-              linear-gradient(to left, #50dde6, #50dde6) right bottom no-repeat;
-  background-size: 3px 20px, 30px 3px, 3px 20px, 30px 3px;
-  /* box-shadow:0 0 10px #fff inset; */
-  /* border: 1px solid #50dde6; */
-  /* background-color: #0d4879; */
-  background-color: rgba(13, 72, 121, 0.3);
 
-}
 </style>

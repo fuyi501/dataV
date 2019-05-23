@@ -1,14 +1,14 @@
 <template>
-  <div class="myline1" :style="{height: lineHeight, width: lineWidth}">
+  <div class="charts-border" :style="{height: lineHeight, width: lineWidth}">
     <v-chart
-      :options="option"
+      :options="lineOption"
       :autoresize="true"
+      theme="chartsTheme"
     />
   </div>
 </template>
 
 <script>
-// :theme="lineTheme"
 export default {
   name: 'ChartLine',
   props: {
@@ -41,93 +41,28 @@ export default {
   },
   data () {
     return {
-      lineTheme: 'walden',
-      option : {
+      lineOption: {
         title: {
           text: this.text,
-          subtext: this.subtext,
-          x: 'left',
-          y: '5',
-          textStyle: {
-            color: '#50dde6'
-          }
+          subtext: this.subtext
         },
+        // 坐标轴指示器
         tooltip : {
           trigger: 'axis',
-          axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-            type : 'line'        // 默认为直线，可选为：'line' | 'shadow'
+          axisPointer : { // 坐标轴触发
+            type : 'line' // 默认为直线，可选为：'line' | 'shadow'
           }
         },
         legend: {
-          orient: 'horizontal',
-          top: '40',
-          textStyle: {
-            color: '#fff'
-          },
           data: this.legendData
-        },
-        grid: {
-          left: '0%',
-          right: '4%',
-          bottom: '3%',
-          containLabel: true
         },
         xAxis: {
           type: 'category',
           boundaryGap: this.boundaryGap,
-          splitLine: {
-            show: false
-          },
-          axisLine: {
-            lineStyle: {
-              color: 'white',
-              width: '1'
-            }
-          },
-          axisTick: { // 坐标轴刻度相关设置。
-            alignWithLabel: true, // 类目轴中在 boundaryGap 为 true 的时候有效，可以保证刻度线和标签对齐。
-            inside: false, // 坐标轴刻度是否朝内，默认朝外。
-            length: 5, // 坐标轴刻度的长度。
-            lineStyle: { // 刻度线的样式。
-              color: 'white',
-              width: 1
-            }
-          },
-          axisLabel: {
-            textStyle: {
-              color: 'white',
-              fontSize: '10'
-            }
-          },
           data: this.xAxisData
         },
         yAxis: {
-          type: 'value',
-          // min: '1',
-          splitLine: {
-            show: false
-          },
-          axisLine: {
-            lineStyle: {
-              color: 'white',
-              width: '1'
-            }
-          },
-          axisTick: { // 坐标轴刻度相关设置。
-            alignWithLabel: true, // 类目轴中在 boundaryGap 为 true 的时候有效，可以保证刻度线和标签对齐。
-            inside: false, // 坐标轴刻度是否朝内，默认朝外。
-            length: 5, // 坐标轴刻度的长度。
-            lineStyle: { // 刻度线的样式。
-              color: 'white',
-              width: 1
-            }
-          },
-          axisLabel: {
-            textStyle: {
-              color: 'white',
-              fontSize: '10'
-            }
-          },
+          type: 'value'
         },
         series: this.seriesData
       }
@@ -143,24 +78,5 @@ export default {
 </script>
 
 <style scoped>
-.echarts {
-  width: 100%;
-  height: 100%;
-}
-.myline1 {
-  padding:0px 20px;
-  background: linear-gradient(to left, #50dde6, #50dde6) left top no-repeat,
-              linear-gradient(to bottom, #50dde6, #50dde6) left top no-repeat,
-              linear-gradient(to left, #50dde6, #50dde6) right top no-repeat,
-              linear-gradient(to bottom, #50dde6, #50dde6) right top no-repeat,
-              linear-gradient(to left, #50dde6, #50dde6) left bottom no-repeat,
-              linear-gradient(to bottom, #50dde6, #50dde6) left bottom no-repeat,
-              linear-gradient(to left, #50dde6, #50dde6) right bottom no-repeat,
-              linear-gradient(to left, #50dde6, #50dde6) right bottom no-repeat;
-  background-size: 3px 20px, 30px 3px, 3px 20px, 30px 3px;
-  /* box-shadow:0 0 10px #fff inset; */
-  /* border: 1px solid #50dde6; */
-  /* background-color: #0d4879; */
-  background-color: rgba(13, 72, 121, 0.3);
-}
+
 </style>

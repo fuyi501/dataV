@@ -1,0 +1,16 @@
+.charts-border {
+  padding:0px 20px;
+  background: linear-gradient(to left, #50dde6, #50dde6) left top no-repeat,
+              linear-gradient(to bottom, #50dde6, #50dde6) left top no-repeat,
+              linear-gradient(to left, #50dde6, #50dde6) right top no-repeat,
+              linear-gradient(to bottom, #50dde6, #50dde6) right top no-repeat,
+              linear-gradient(to left, #50dde6, #50dde6) left bottom no-repeat,
+              linear-gradient(to bottom, #50dde6, #50dde6) left bottom no-repeat,
+              linear-gradient(to left, #50dde6, #50dde6) right bottom no-repeat,
+              linear-gradient(to left, #50dde6, #50dde6) right bottom no-repeat;
+  background-size: 2px 20px, 20px 2px, 2px 20px, 20px 2px;
+  /* box-shadow:0 0 10px #fff inset; */
+  /* border: 1px solid #50dde6; */
+  /* background-color: #0d4879; */
+  background-color: rgba(13, 72, 121, 0.3);
+}

@@ -5,6 +5,8 @@ import store from "./store";
 
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
+import '../my-theme/my.css'
+// import '../my-theme/index.less'
 
 import echarts from 'echarts';
 Vue.prototype.$echarts = echarts
@@ -24,22 +26,22 @@ import 'echarts/lib/component/legend'
 import 'echarts/lib/component/title'
 
 // 导入自带主题，可以引入多个主题
-import 'echarts/theme/dark'
-import 'echarts/theme/macarons'
-import 'echarts/theme/infographic'
+// import 'echarts/theme/dark'
+// import 'echarts/theme/macarons'
+// import 'echarts/theme/infographic'
 
 // 自定义主题如果是 js 文件，可以放在 echarts/theme 目录下
 // 如果是 json 文件，可以像下面一样使用
-import 'echarts/theme/walden'
+// import 'echarts/theme/walden'
 
 // 导入自定义主题
 // ./views/theme/ 下保存的是自定义的主题
-import roma from '@/components/charts/theme/roma.json'
-import wonderland from '@/components/charts/theme/wonderland.json'
+import chartsTheme from '@/theme/chartsTheme.json'
+// import wonderland from '@/theme/wonderland.json'
 
-// registering custom theme
-ECharts.registerTheme('roma', roma)
-ECharts.registerTheme('wonderland', wonderland)
+// 注册自定义主题
+ECharts.registerTheme('chartsTheme', chartsTheme)
+// ECharts.registerTheme('wonderland', wonderland)
 
 // 视频播放 vue-video-player
 import VueVideoPlayer from 'vue-video-player'

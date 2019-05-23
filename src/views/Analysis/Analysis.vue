@@ -11,12 +11,18 @@
               </Select>
             </FormItem>
           </Form>
+          <Tabs type="card">
+            <TabPane label="今日数据">今日数据</TabPane>
+            <TabPane label="近七天">近七天</TabPane>
+            <TabPane label="近一月">近一月</TabPane>
+          </Tabs>
         </Row>
         <Row >
           <pass7-day-data-line :selectedStation="selectedStation"></pass7-day-data-line>
         </Row>
         <Row style="margin: 20px 0px;">
           <pass7-day-data-bar :selectedStation="selectedStation"></pass7-day-data-bar>
+          <pass7-day-data-bar2 :selectedStation="selectedStation"></pass7-day-data-bar2>
         </Row>
         <Row style="margin: 20px 0px;">
           <refuel-overview-event-pie :selectedStation="selectedStation"></refuel-overview-event-pie>
@@ -29,13 +35,14 @@
         <Row style="margin: 10px 0px;">
           <today-data-line :selectedStation="selectedStation"></today-data-line>
         </Row>
-        <Row style="margin: 10px 0px;">
-          <heat-map></heat-map>
+        <Row style="margin: 10px 0px;" type="flex" justify="start" :gutter="20" >
+          <!-- <heat-map></heat-map> -->
         </Row>
       </Col>
 
       <!-- 右侧 -->
       <Col :span="6">
+      <div class="charts-border">
         <Row style="margin-top:10px;">
           <safe-box-event-pie :selectedStation="selectedStation"></safe-box-event-pie>
         </Row>
@@ -45,6 +52,7 @@
         <Row style="margin: 20px 0px;">
           <unload-event-pie :selectedStation="selectedStation"></unload-event-pie>
         </Row>
+      </div>
       </Col>
     </Row>
   </div>
@@ -57,6 +65,7 @@ import constData from '@/util/constData' // 保存的常量
 import TodayDataLine from './components/todayDataLine.vue'
 import Pass7DayDataLine from './components/pass7DayLine'
 import Pass7DayDataBar from './components/pass7DayBar'
+import Pass7DayDataBar2 from './components/pass7DayBar2'
 import RefuelOverviewEventPie from './components/refuelOverviewEventPie'
 import SafeBoxEventPie from './components/safeBoxEventPie'
 import CheckoutEventPie from './components/checkoutEventPie'
@@ -70,12 +79,14 @@ export default {
     TodayDataLine,
     Pass7DayDataLine,
     Pass7DayDataBar,
+    Pass7DayDataBar2,
     RefuelOverviewEventPie,
     SafeBoxEventPie,
     CheckoutEventPie,
     UnloadEventPie,
     MyInfoCard,
-    HeatMap
+    HeatMap,
+
   },
   data() {
     return {

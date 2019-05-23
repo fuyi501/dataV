@@ -4,6 +4,7 @@ import Home from "./views/Home/Home.vue";
 import Monitor from "./views/Monitor/Monitor.vue";
 import Events from "./views/Events/Events.vue";
 import Analysis from "./views/Analysis/Analysis.vue";
+import Test from "./views/test/test.vue";
 
 Vue.use(Router);
 
@@ -30,6 +31,11 @@ export default new Router({
       path: "/analysis",
       name: "analysis",
       component: Analysis
+    },
+    {
+      path: "/test",
+      name: "test",
+      component: Test
     }
   ]
 });
