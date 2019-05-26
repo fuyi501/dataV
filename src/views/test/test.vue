@@ -16,6 +16,7 @@
       <Col :span="6"><bingtu2></bingtu2></Col>
       <Col :span="6"><xiangxingtu3></xiangxingtu3></Col>
       <Col :span="6"><xiangxingtu4></xiangxingtu4></Col>
+      <Col :span="6"><api></api></Col>
     </Row>
   </div>
 </template>
@@ -38,6 +39,9 @@ import Bingtu from "./components/bingtu";
 import Zhutu from "./components/zhutu";
 import Bingtu2 from "./components/bingtu2";
 
+// 测试 api
+import Api from "./api";
+
 export default {
   name: "analysis",
   components: {
@@ -54,7 +58,8 @@ export default {
     Tiaoxing,
     Bingtu,
     Zhutu,
-    Bingtu2
+    Bingtu2,
+    Api
   },
   data() {
     return {};

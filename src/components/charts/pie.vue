@@ -44,15 +44,16 @@ export default {
           formatter: "{a} <br/>{b} : {c} ({d}%)"
         },
         legend: {
-          orient: 'horizontal',
+          orient: 'vertical',
+          left: 'left',
           data: this.legendData
         },
         series: [
           {
             name: '事件分布',
             type: 'pie',
-            radius: ['40%', '55%'],
-            center: ['50%', '50%'],
+            radius: ['45%', '60%'],
+            center: ['60%', '60%'],
             data: this.seriesData,
             itemStyle: {
               emphasis: {
@@ -74,7 +75,7 @@ export default {
             name: '事件分布',
             type: 'pie',
             radius: ['0%', '30%'],
-            center: ['50%', '50%'],
+            center: ['60%', '60%'],
             data: [
               {value: 200, name: '合规', selected: true},
               {value: 600, name: '违规'}

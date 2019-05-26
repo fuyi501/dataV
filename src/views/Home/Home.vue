@@ -93,7 +93,7 @@ export default {
 
 <style>
 .home {
-  padding: 20px;
+  padding: 40px 40px;
   /* margin: -20px 0px; */
   /* background-color: #0a4271; */
   /* background-color: #0b0f34 !important; */
@@ -101,7 +101,7 @@ export default {
   background: url('../../assets/bg.jpg') center;
   /* background-size: 100% 100%; */
   /* box-sizing: border-box; */
-  height: 3000px;
+  height: 3500px;
 }
 </style>
 

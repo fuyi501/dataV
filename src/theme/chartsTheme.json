@@ -13,13 +13,13 @@
     "top": "5",
     "textStyle": {
       "color": "#50dde6",
-      "fontSize": "24"
+      "fontSize": "20"
     },
     "subtextStyle": {
       "color": "#aaaaaa",
-      "fontSize": "18"
+      "fontSize": "16"
     },
-    "left": "center"
+    "left": "left"
   },
   "line": {
     "itemStyle": {
@@ -34,7 +34,7 @@
       "fontSize": "16"
     },
     "symbolSize": "12",
-    "symbol": "emptyCircle",
+    "symbol": "circle",
     "smooth": true
   },
   "radar": {
@@ -259,7 +259,7 @@
     },
     "axisTick": {
       "show": true,
-      "alignWithLabel": true,
+      "alignWithLabel": false,
       "inside": false,
       "length": 5,
       "lineStyle": {
@@ -293,6 +293,7 @@
     }
   },
   "valueAxis": {
+    "minInterval": 1,
     "axisLine": {
       "show": true,
       "lineStyle": {

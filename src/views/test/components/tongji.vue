@@ -25,7 +25,6 @@ export default {
   data() {
     return {
       option:{
-    backgroundColor: "#20263f",
     series: [{
         name: '第一个圆环',
         type: 'pie',

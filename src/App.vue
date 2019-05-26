@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Layout>
-      <Header :style="{width: '100%'}">
+      <Header :style="{width: '100%'}" style="padding-bottom:20px;">
         <MyHeader />
       </Header>
       <Content>
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import MyHeader from "@/components/header/Header.vue";
+import MyHeader from "@/components/header/Header3.vue";
 
 export default {
   components: {
@@ -26,11 +26,11 @@ export default {
   font-family: "microsoft yahei", Arial, sans-serif, "Avenir", Helvetica;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  // text-align: center;
   color: #0a4271;
   // background-color: red;
   // background-image: url('./assets/wrapper-bg.png');
-  height: 780px;
+  // height: 780px;
 }
 
 </style>

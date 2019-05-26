@@ -21,13 +21,13 @@ export default {
     return {
       colData:
       [
-        { title: '事件序号', key: 'index' },
-        { title: '站点名称', key: 'station' },
-        { title: '事件名称', key: 'action' },
+        { title: '事件序号', key: 'index', width: '120' },
+        { title: '站点名称', key: 'station', width: '180' },
+        { title: '事件名称', key: 'action', width: '180' },
         { title: '事件原因', key: 'cause' },
         // { title: '事件等级', key: 'level' },
-        { title: '事件状态', key: 'status' },
-        { title: '发生时间', key: 'datetime' }
+        { title: '事件状态', key: 'status', width: '120' },
+        { title: '发生时间', key: 'datetime', width: '200' }
       ]
     }
   },

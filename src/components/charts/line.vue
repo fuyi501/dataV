@@ -1,5 +1,5 @@
 <template>
-  <div class="charts-border" :style="{height: lineHeight, width: lineWidth}">
+  <div :style="{height: lineHeight, width: lineWidth}">
     <v-chart
       :options="lineOption"
       :autoresize="true"
@@ -28,7 +28,7 @@ export default {
     legendData: Array,
     boundaryGap: { // 数据从坐标轴起始
       type: Boolean,
-      default: true
+      default: false
     },
     lineHeight: {
       type: String,

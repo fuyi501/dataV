@@ -1,7 +1,7 @@
 <template>
   <chart-pie
     :text="pieData.title"
-    pieHeight="500px"
+    pieHeight="800px"
     :legendData="pieData.legendData"
     :seriesData="pieData.seriesData">
   </chart-pie>

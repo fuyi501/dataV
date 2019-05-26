@@ -19,7 +19,7 @@
         <Icon type="md-alert" />
         报警事件
       </MenuItem>
-      <MenuItem name="4" to="/test">
+      <MenuItem name="5" to="/test">
         <Icon type="md-alert" />
         测试页面
       </MenuItem>

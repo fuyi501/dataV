@@ -1,7 +1,6 @@
 <template>
   <chart-pie
     :text="pieData.title"
-    pieHeight="500px"
     :legendData="pieData.legendData"
     :seriesData="pieData.seriesData">
   </chart-pie>
@@ -22,29 +21,20 @@ export default {
   props: {
     selectedStation: {
       type: Object
+    },
+    eventSeriesData: {
+      type: Array
     }
   },
   data () {
     return {
       today_start: '',
       today_end: '',
-      refuelOverviewAcion: [
-        "服务不规范",
-        "油井巡检",
-        "巡检",
-        "未引导",
-        "未回零",
-      ],
+      safeBoxAction: ['单手', '双手接递', '服务超时'],
       pieData: {
-        title: '今日加油区事件分布',
-        legendData: this.refuelOverviewAcion,
-        seriesData: [
-          { value: 335, name: '服务不规范' },
-          { value: 310, name: '油井巡检' },
-          { value: 234, name: '巡检' },
-          { value: 310, name: '未引导' },
-          { value: 234, name: '未回零' }
-        ]
+        title: '收银台事件分布',
+        legendData: ['单手', '双手接递', '服务超时'],
+        seriesData: this.eventSeriesData
       },
     }
   },
@@ -61,7 +51,7 @@ export default {
     // 今日实时数据
     this.today_start = dayjs().startOf('day').format('YYYY-MM-DD HH:mm:ss')
     this.today_end = dayjs().format('YYYY-MM-DD HH:mm:ss')
-    this.getTodayData(this.today_start, this.today_end, this.selectedStation.station, 'refuel_overview', this.refuelOverviewAcion)
+    // this.getTodayData(this.today_start, this.today_end, 'xiwan', 'checkout', this.safeBoxAction)
   },
   mounted () {
 

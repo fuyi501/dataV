@@ -23,7 +23,7 @@ export default {
   props: {
     left: {
       type: Number,
-      default: 44
+      default: 32
     },
     leftColor: { // 左侧图标背景色
       type: String,

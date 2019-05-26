@@ -1,58 +1,58 @@
 <template>
   <div class="home" :style="{height: contentHeight}">
-    <!-- 左侧 -->
-    <Row type="flex" justify="start">
-      <Col :span="6">
-        <Row type="flex" justify="start" style="margin: 0 0 -10px;">
-          <Form :model="selectedStation" :label-width="100" inline >
-            <FormItem label="选择站点：">
-              <Select v-model="selectedStation.station">
-                <Option v-for="item in stationList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-              </Select>
-            </FormItem>
-          </Form>
-          <Tabs type="card">
-            <TabPane label="今日数据">今日数据</TabPane>
-            <TabPane label="近七天">近七天</TabPane>
-            <TabPane label="近一月">近一月</TabPane>
-          </Tabs>
-        </Row>
-        <Row >
-          <pass7-day-data-line :selectedStation="selectedStation"></pass7-day-data-line>
-        </Row>
-        <Row style="margin: 20px 0px;">
-          <pass7-day-data-bar :selectedStation="selectedStation"></pass7-day-data-bar>
-          <pass7-day-data-bar2 :selectedStation="selectedStation"></pass7-day-data-bar2>
-        </Row>
-        <Row style="margin: 20px 0px;">
-          <refuel-overview-event-pie :selectedStation="selectedStation"></refuel-overview-event-pie>
-        </Row>
+    <!-- 选择站点和时间 -->
+    <Row type="flex" justify="start" align="middle" style="margin: -20px 0px 0px;height:70px;">
+      <Col>
+        <Form :model="selectedData" :label-width="100" inline style="padding-top:15px;">
+          <FormItem label="选择站点：">
+            <Select v-model="selectedData.station">
+              <Option v-for="item in stationList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+            </Select>
+          </FormItem>
+        </Form>
+      </Col>
+      <Col class="mytabs">
+        <Tabs v-model="selectedData.dateTime">
+          <TabPane label="实时数据" name="today"></TabPane>
+          <TabPane label="近一周" name="week"></TabPane>
+          <TabPane label="近一月" name="month"></TabPane>
+        </Tabs>
+      </Col>
+    </Row>
+
+    <!-- 左侧 显示收银台信息 -->
+    <Row type="flex" justify="start" :gutter="20">
+      <Col :span="8" style="border: 1px solid red;">
+        <checkout :selectedData="selectedData"></checkout>
       </Col>
 
-      <!-- 中间 -->
-      <Col :span="12">
-        <my-info-card :selectedStation="selectedStation"></my-info-card>
+      <!-- 中间 显示总信息，保险柜-->
+      <Col :span="10" style="border: 1px solid red;">
+        <my-info-card :selectedData="selectedData"></my-info-card>
+        <!-- 今日违规事件总体统计 -->
         <Row style="margin: 10px 0px;">
-          <today-data-line :selectedStation="selectedStation"></today-data-line>
+          <div class="charts-border">
+            <today-data-line :selectedData="selectedData"></today-data-line>
+          </div>
         </Row>
-        <Row style="margin: 10px 0px;" type="flex" justify="start" :gutter="20" >
-          <!-- <heat-map></heat-map> -->
+        <!-- 保险柜数据 -->
+        <Row style="margin: 20px 0px;" type="flex" justify="start" :gutter="20" >
+          <safe-box></safe-box>
         </Row>
       </Col>
 
-      <!-- 右侧 -->
-      <Col :span="6">
-      <div class="charts-border">
-        <Row style="margin-top:10px;">
-          <safe-box-event-pie :selectedStation="selectedStation"></safe-box-event-pie>
-        </Row>
-        <Row style="margin: 20px 0px;">
-          <checkout-event-pie :selectedStation="selectedStation"></checkout-event-pie>
-        </Row>
-        <Row style="margin: 20px 0px;">
-          <unload-event-pie :selectedStation="selectedStation"></unload-event-pie>
-        </Row>
-      </div>
+      <!-- 右侧 显示加油区和卸油口数据-->
+      <Col :span="6" style="border: 1px solid red;">
+        <div class="charts-border" style="border: 1px solid green;">
+          <Row>
+            <refuel></refuel>
+          </Row>
+        </div>
+        <div class="charts-border" style="border: 1px solid yellow;margin:20px 0px;">
+          <Row style="margin: 10px 0px;">
+            <unload></unload>
+          </Row>
+        </div>
       </Col>
     </Row>
   </div>
@@ -62,37 +62,30 @@
 import constData from '@/util/constData' // 保存的常量
 
 // 页面组件
-import TodayDataLine from './components/todayDataLine.vue'
-import Pass7DayDataLine from './components/pass7DayLine'
-import Pass7DayDataBar from './components/pass7DayBar'
-import Pass7DayDataBar2 from './components/pass7DayBar2'
-import RefuelOverviewEventPie from './components/refuelOverviewEventPie'
-import SafeBoxEventPie from './components/safeBoxEventPie'
-import CheckoutEventPie from './components/checkoutEventPie'
-import UnloadEventPie from './components/unloadEventPie'
 import MyInfoCard from './components/myInfoCard'
-import HeatMap from './components/heatMap'
+import TodayDataLine from './components/todayDataLine.vue'
+
+import SafeBox from './safebox/safebox'
+import Unload from './unload/unload'
+import Checkout from './checkout/checkout'
+import Refuel from './refuel/refuel'
 
 export default {
   name: "analysis",
   components: {
     TodayDataLine,
-    Pass7DayDataLine,
-    Pass7DayDataBar,
-    Pass7DayDataBar2,
-    RefuelOverviewEventPie,
-    SafeBoxEventPie,
-    CheckoutEventPie,
-    UnloadEventPie,
     MyInfoCard,
-    HeatMap,
-
+    SafeBox,
+    Unload,
+    Checkout,
+    Refuel
   },
   data() {
     return {
       contentHeight: "",
-      selectedStation: {
-        station: 'xiwan'
+      selectedData: {
+        station: 'xiwan',
+        dateTime: 'today'
       },
       stationList: constData.stationList,
     }
@@ -101,6 +94,12 @@ export default {
     // 如果 `clientHeight` 发生改变，这个函数就会运行
     contentHeight: function() {
       return `${document.documentElement.clientHeight - 60}px`;
+    },
+    selectedData: {
+      deep: true,
+      handler (value) {
+        console.log('智能分析新的值：', value)
+      }
     }
   },
   mounted () {
@@ -117,7 +116,16 @@ export default {
 };
 </script>
 
-<style>
+<style lang="less">
+.mytabs {
+  height: 70px;
+}
+.mytabs .ivu-tabs .ivu-tabs-nav .ivu-tabs-tab-active {
+  color: #fff !important;
+}
+.mytabs .ivu-tabs .ivu-tabs-tab {
+  font-size: 20px !important;
+}
 
 </style>
 

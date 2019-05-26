@@ -1,7 +1,7 @@
 <template>
   <div class="home" :style="{height: contentHeight}">
     <!-- 左侧 -->
-    <Row type="flex" justify="start" :gutter="20">
+    <Row type="flex" justify="center" :gutter="20">
       <Col :span="16">
         <Tabs type="card" :value="tabName" @on-click="handleTabClick">
           <TabPane label="卸油区智能管控">
@@ -110,8 +110,8 @@
       <!-- 右侧 -->
       <Col :span="8">
         <Row >
-          <Card style="width:100%; height:300px;margin-top:30px;background: #01237C;">
-            <p slot="title" style="padding-left:10px;">
+          <Card style="width:100%; min-height:300px;margin-top:30px;background: #01237C;">
+            <p slot="title" style="padding-left:30px;">
               <!-- <Icon type="ios-film-outline"></Icon> -->
               事件详情
             </p>
@@ -130,10 +130,21 @@
                   事件原因：{{ item.cause }}
                 </p>
                 <p style="line-height:16px;font-size:16px;color:#fff;padding:10px 10px;">
-                  事件等级：{{ item.level }}
+                  事件等级：{{ item.level.label }}
                 </p>
                 <p style="line-height:16px;font-size:16px;color:#fff;padding:10px 10px;">
                   发生时间：{{ item.datetime }}
+                </p>
+                <p style="line-height:16px;font-size:16px;color:#fff;padding:0px 10px;">
+                  <p style="line-height:16px;font-size:16px;color:#fff;padding:10px 10px;">事件照片：</p>
+                  <img :src="item.http_url_image" style="width:660px;padding:10px 10px;">
+                </p>
+                <p style="line-height:16px;font-size:16px;color:#fff;padding:0px 10px;">
+                  <p style="line-height:16px;font-size:16px;color:#fff;padding:10px 10px;">事件视频：</p>
+                  <div style="width:660px;padding:10px 10px;">
+                    <my-video-mp4 :src="item.http_url_video"></my-video-mp4>
+                  </div>
+
                 </p>
               </li>
             </ul>
@@ -157,11 +168,15 @@ import constData from '@/util/constData' // 保存的常量
 import axios from 'axios'
 import dayjs from 'dayjs'
 
+import MyVideoMp4 from '@/components/myvideo/MyVideoMp4'
+
+
 export default {
   name: "event",
   components: {
     MyTable,
-    MyForm
+    MyForm,
+    MyVideoMp4
   },
   data() {
     return {
@@ -174,7 +189,7 @@ export default {
       safeBoxActionList: constData.safeBoxActionList,
       oilActionList: constData.oilActionList,
       checkoutActionList: constData.checkoutActionList,
-      levelList: constData.levelList,
+      levelList: constData.levelList2,
 
       unloadTableData: [], // 卸油区
       safeboxTableData: [], // 保险柜
@@ -185,7 +200,7 @@ export default {
 
       unloadTotal: 0,
       unloadCurrent: 1,
-      unloadPageSize: 10,
+      unloadPageSize: 20,
 
       safeboxTotal: 0,
       safeboxCurrent: 1,
@@ -254,7 +269,7 @@ export default {
       let end_time = dayjs(value.time[1]).format('YYYY-MM-DD HH:mm:ss')
       let station = value.station === 'all' ? '' : value.station
       let action = value.action === '全部' ? '' : value.action
-      let level = value.level === '0' ? '' : value.level
+      let level = value.level === '4' ? '' : value.level
 
       console.log(start_time, end_time, station, action, level, this.category)
       this.getTableData(start_time, end_time, station, action, level, this.category, page_index, page_size)
@@ -277,7 +292,7 @@ export default {
           console.log('输出：', res)
           let resData = res.data.data.events
           let tableData = resData.map((ele, index) => {
-            // console.log(ele,index)
+            console.log(ele,index)
             return {
               index: index+1,
               station: constData.stationList2[ele.station],
@@ -286,7 +301,9 @@ export default {
               cause: ele.cause,
               level: constData.levelList2[ele.level],
               status: ele.status,
-              datetime: ele.datetime
+              datetime: ele.datetime,
+              http_url_image: ele.http_url_image,
+              http_url_video: ele.http_url_video
             }
           })
 
