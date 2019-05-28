@@ -2,8 +2,9 @@
   <div style="width:100%;">
     <!-- <p>保险柜</p> -->
     <!-- <violations></violations> -->
-    <service-cars></service-cars>
-    <refuel-overview-event-pie></refuel-overview-event-pie>
+    <yong-du :selectedData="selectedData"></yong-du>
+    <service-cars :selectedData="selectedData"></service-cars>
+    <refuel-overview-event-pie :selectedData="selectedData"></refuel-overview-event-pie>
   </div>
 </template>
 
@@ -19,18 +20,20 @@ import dayjs from 'dayjs'
 import constData from '@/util/constData' // 保存的常量
 
 // import Violations from './violations'
+import YongDu from './yongdu'
 import ServiceCars from './serviceCars'
 import RefuelOverviewEventPie from './refuelOverviewEventPie'
 
 export default {
   components: {
     // Violations
+    YongDu,
     ServiceCars,
     RefuelOverviewEventPie
   },
   props: {
     // 选择的站点名称
-    selectedStation: {
+    selectedData: {
       type: Object,
       default: () => new Object({station: 'xiwan'})
     }

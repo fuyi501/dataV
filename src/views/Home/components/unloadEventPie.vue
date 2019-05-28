@@ -2,7 +2,8 @@
   <chart-pie
     :text="pieData.title"
     :legendData="pieData.legendData"
-    :seriesData="pieData.seriesData">
+    :seriesData="pieData.seriesData"
+    legendOrient="horizontal">
   </chart-pie>
 </template>
 

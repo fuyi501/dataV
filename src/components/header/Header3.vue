@@ -50,11 +50,11 @@ export default {
 
 <style lang="less">
 .ivu-menu-horizontal {
-  height: 0px !important;
-  line-height: 50px !important;
+  height: 0rem !important;
+  line-height: 5rem !important;
 }
 .ivu-menu-horizontal.ivu-menu-light:after {
-  height: 0px !important;
+  height: 0rem !important;
 }
 .ivu-menu-light.ivu-menu-horizontal .ivu-menu-item-active {
   color: #fff !important;
@@ -72,17 +72,17 @@ export default {
 }
 .layout-title{
     // width: 600px;
-    height: 80px;
-    line-height: 80px;
-    font-size: 46px;
+    height: 6rem;
+    line-height: 6rem;
+    font-size: 4rem;
     font-weight: bold;
     text-align: center;
     color: #4bdaff;
-    border-radius: 3px;
+    border-radius: 0.3rem;
     // float: left;
     // position: relative;
-    top: 15px;
-    border-bottom: 3px solid #4bdaff;
+    top: 1.5rem;
+    border-bottom: 0.3rem solid #4bdaff;
     // left: 0px;
 }
 .ivu-menu-item {
@@ -92,32 +92,10 @@ export default {
 }
 
 .layout-nav{
-    // width: 820px;
-    height: 50px;
-    padding-left: 30px;
+    // width: 82rem;
+    height: 5rem;
+    padding-left: 3rem;
     margin: 0 auto;
     // float: right;
 }
-// .layout{
-//   border: 1px solid #d7dde4;
-//   background: #f5f7f9;
-//   position: relative;
-//   border-radius: 4px;
-//   overflow: hidden;
-// }
-// .layout-title{
-//   width: 100px;
-//   height: 30px;
-//   background: #5b6270;
-//   border-radius: 3px;
-//   float: left;
-//   position: relative;
-//   top: 15px;
-//   left: 20px;
-// }
-// .layout-nav{
-//   width: 420px;
-//   margin: 0 auto;
-//   margin-right: 20px;
-// }
 </style>

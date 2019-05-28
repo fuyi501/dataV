@@ -1,5 +1,5 @@
 <template>
-  <div class="charts-border" :style="{height: barHeight, width: barWidth}">
+  <div :style="{height: barHeight, width: barWidth}">
     <v-chart
       :options="stackBarOption"
       :autoresize="true"

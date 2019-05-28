@@ -30,6 +30,14 @@ export default {
     pieWidth: {
       type: String,
       default: '100%'
+    },
+    legendOrient: {
+      type: String,
+      default: 'vertical'
+    },
+    legendLeft: {
+      type: String,
+      default: 'left'
     }
   },
   data () {
@@ -44,8 +52,8 @@ export default {
           formatter: "{a} <br/>{b} : {c} ({d}%)"
         },
         legend: {
-          orient: 'vertical',
-          left: 'left',
+          orient: this.legendOrient,
+          left: this.legendLeft,
           data: this.legendData
         },
         series: [
@@ -53,7 +61,7 @@ export default {
             name: '事件分布',
             type: 'pie',
             radius: ['45%', '60%'],
-            center: ['60%', '60%'],
+            center: ['50%', '60%'],
             data: this.seriesData,
             itemStyle: {
               emphasis: {
@@ -75,7 +83,7 @@ export default {
             name: '事件分布',
             type: 'pie',
             radius: ['0%', '30%'],
-            center: ['60%', '60%'],
+            center: ['50%', '60%'],
             data: [
               {value: 200, name: '合规', selected: true},
               {value: 600, name: '违规'}

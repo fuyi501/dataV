@@ -22,12 +22,12 @@
 
     <!-- 左侧 显示收银台信息 -->
     <Row type="flex" justify="start" :gutter="20">
-      <Col :span="8" style="border: 1px solid red;">
+      <Col :span="8">
         <checkout :selectedData="selectedData"></checkout>
       </Col>
 
-      <!-- 中间 显示总信息，保险柜-->
-      <Col :span="10" style="border: 1px solid red;">
+      <!-- 中间 显示总信息，保险柜，卸油口数据-->
+      <Col :span="10" style="">
         <my-info-card :selectedData="selectedData"></my-info-card>
         <!-- 今日违规事件总体统计 -->
         <Row style="margin: 10px 0px;">
@@ -35,23 +35,21 @@
             <today-data-line :selectedData="selectedData"></today-data-line>
           </div>
         </Row>
-        <!-- 保险柜数据 -->
-        <Row style="margin: 20px 0px;" type="flex" justify="start" :gutter="20" >
-          <safe-box></safe-box>
+        <!-- 保险柜数据 和 卸油口 数据 -->
+        <Row style="margin: 20px 0px;height:" class="charts-border" type="flex" justify="start" :gutter="10" >
+          <Col :span="12">
+            <safe-box :selectedData="selectedData"></safe-box>
+          </Col>
+          <Col :span="12">
+            <unload :selectedData="selectedData"></unload>
+          </Col>
         </Row>
       </Col>
 
       <!-- 右侧 显示加油区和卸油口数据-->
-      <Col :span="6" style="border: 1px solid red;">
-        <div class="charts-border" style="border: 1px solid green;">
-          <Row>
-            <refuel></refuel>
-          </Row>
-        </div>
-        <div class="charts-border" style="border: 1px solid yellow;margin:20px 0px;">
-          <Row style="margin: 10px 0px;">
-            <unload></unload>
-          </Row>
+      <Col :span="6">
+        <div class="charts-border" style="">
+          <refuel :selectedData="selectedData"></refuel>
         </div>
       </Col>
     </Row>
@@ -95,17 +93,11 @@ export default {
     contentHeight: function() {
       return `${document.documentElement.clientHeight - 60}px`;
     },
-    selectedData: {
-      deep: true,
-      handler (value) {
-        console.log('智能分析新的值：', value)
-      }
-    }
   },
   mounted () {
     // 获取浏览器可视区域高度
     this.contentHeight = `${document.documentElement.clientHeight - 60}px`;
-    console.log(this.contentHeight)
+    // console.log(this.contentHeight)
     window.onresize = function temp() {
       this.contentHeight = `${document.documentElement.clientHeight - 60}px`;
     }
@@ -124,7 +116,7 @@ export default {
   color: #fff !important;
 }
 .mytabs .ivu-tabs .ivu-tabs-tab {
-  font-size: 20px !important;
+  font-size: 2rem !important;
 }
 
 </style>

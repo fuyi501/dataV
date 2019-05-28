@@ -1,21 +1,25 @@
 <template>
-  <div class="home" :style="{height: contentHeight}">
+  <div class="home" :style="{height: '3000px'}">
     <!-- 左侧 -->
     <Row type="flex" justify="start">
       <Col :span="6">
         <Row >
-          <pass7-day-data-line></pass7-day-data-line>
+          <weigui2></weigui2>
+          <!-- <pass7-day-data-line></pass7-day-data-line> -->
         </Row>
         <Row style="margin: 20px 0px;">
-          <pass7-day-data-bar></pass7-day-data-bar>
+          <river></river>
+          <!-- <pass7-day-data-bar></pass7-day-data-bar> -->
         </Row>
         <Row style="margin: 20px 0px;">
-          <refuel-overview-event-pie></refuel-overview-event-pie>
+
         </Row>
       </Col>
 
       <!-- 中间 -->
       <Col :span="12">
+    <Button @click="handleClick">我是按钮</Button>
+
         <Row >
           <!-- <MapGeo :mapData="map"></MapGeo> -->
           <InMap></InMap>
@@ -28,15 +32,21 @@
       <!-- 右侧 -->
       <Col :span="6">
         <Row>
-          <safe-box-event-pie></safe-box-event-pie>
+          <persons2></persons2>
+          <Cars></Cars>
+          <!-- <persons></persons> -->
         </Row>
         <Row style="margin: 20px 0px;">
-          <checkout-event-pie></checkout-event-pie>
         </Row>
         <Row style="margin: 20px 0px;">
-          <unload-event-pie></unload-event-pie>
         </Row>
       </Col>
+    </Row>
+    <Row type="flex" justify="center" :gutter="20">
+      <Col :span="6"><unload-event-pie class="charts-border"></unload-event-pie></Col>
+      <Col :span="6"><checkout-event-pie class="charts-border"></checkout-event-pie></Col>
+      <Col :span="6"><safe-box-event-pie class="charts-border"></safe-box-event-pie></Col>
+      <Col :span="6"><refuel-overview-event-pie class="charts-border"></refuel-overview-event-pie></Col>
     </Row>
   </div>
 </template>
@@ -54,6 +64,13 @@ import CheckoutEventPie from './components/checkoutEventPie'
 import UnloadEventPie from './components/unloadEventPie'
 import RefuelOverviewEventPie from './components/refuelOverviewEventPie'
 
+import River from './service/river'
+import Persons from './service/persons'
+import Persons2 from './service/person2'
+import Cars from './service/cars'
+import Weigui2 from './service/weigui2'
+
+
 export default {
   name: "home",
   components: {
@@ -64,7 +81,13 @@ export default {
     CheckoutEventPie,
     UnloadEventPie,
     RefuelOverviewEventPie,
-    InMap
+    InMap,
+
+    River,
+    Persons,
+    Persons2,
+    Cars,
+    Weigui2
   },
   data() {
     return {
@@ -86,7 +109,10 @@ export default {
     }
   },
   methods: {
-
+    handleClick() {
+      console.log('我点击了')
+      this.$router.push('test')
+    }
   }
 };
 </script>

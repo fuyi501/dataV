@@ -1,5 +1,5 @@
 <template>
-<div class="charts-border" style="height:40rem;width:96%;margin-top:1rem;">
+<div class="charts-border" style="height:400px;width:100%;margin-top:10px;">
   <v-chart
       :options="option"
       :autoresize="true"
@@ -12,27 +12,27 @@ var scale = 1;
 var echartData = [
   {
     value: 2154,
-    name: "曲阜师范大学"
+    name: "西万路"
   },
   {
     value: 3854,
-    name: "潍坊学院"
+    name: "西门"
   },
   {
     value: 3515,
-    name: "青岛职业技术学院"
+    name: "明德门"
   },
   {
     value: 3515,
-    name: "淄博师范高等专科"
+    name: "草滩路"
   },
   {
     value: 3854,
-    name: "鲁东大学"
+    name: "朱宏路"
   },
   {
     value: 2154,
-    name: "山东师范大学"
+    name: "凤城十路"
   }
 ];
 var rich = {
@@ -50,8 +50,8 @@ var rich = {
   white: {
     color: "#fff",
     align: "center",
-    fontSize: 14 * scale,
-    padding: [21, 0]
+    fontSize: 24 * scale,
+    padding: [11, 30]
   },
   blue: {
     color: "#49dff0",
@@ -70,9 +70,9 @@ export default {
   data() {
     return {
       option: {
-        backgroundColor: "#031f2d",
+        // backgroundColor: "#031f2d",
         title: {
-          text: "总考生数",
+          text: "违规总数",
           left: "center",
           top: "53%",
           padding: [24, 0],
@@ -107,7 +107,7 @@ export default {
         },
         series: [
           {
-            name: "总考生数量",
+            name: "违规总数",
             type: "pie",
             radius: ["42%", "50%"],
             hoverAnimation: false,

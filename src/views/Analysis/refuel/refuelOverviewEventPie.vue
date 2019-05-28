@@ -1,9 +1,11 @@
 <template>
   <chart-pie
     :text="pieData.title"
-    pieHeight="300px"
+    pieHeight="380px"
     :legendData="pieData.legendData"
-    :seriesData="pieData.seriesData">
+    :seriesData="pieData.seriesData"
+    legendOrient="horizontal"
+    >
   </chart-pie>
 </template>
 
@@ -20,7 +22,7 @@ export default {
     ChartPie
   },
   props: {
-    selectedStation: {
+    selectedData: {
       type: Object
     }
   },
@@ -37,7 +39,7 @@ export default {
       ],
       pieData: {
         title: '今日加油区事件分布',
-        legendData: this.refuelOverviewAcion,
+        legendData: ['服务不规范', '油井巡检', '巡检', '未引导', '未回零'],
         seriesData: [
           { value: 335, name: '服务不规范' },
           { value: 310, name: '油井巡检' },
@@ -49,11 +51,11 @@ export default {
     }
   },
   watch: {
-    selectedStation: {
+    selectedData: {
       deep: true,
       handler (value) {
         console.log('新的值：', value)
-        // this.getPass7DayData(this.pass7day, this.pass1day, this.selectedStation.station, constData.categoryData)
+        // this.getPass7DayData(this.pass7day, this.pass1day, this.selectedData.station, constData.categoryData)
       }
     }
   },
@@ -61,7 +63,7 @@ export default {
     // 今日实时数据
     this.today_start = dayjs().startOf('day').format('YYYY-MM-DD HH:mm:ss')
     this.today_end = dayjs().format('YYYY-MM-DD HH:mm:ss')
-    this.getTodayData(this.today_start, this.today_end, this.selectedStation.station, 'refuel_overview', this.refuelOverviewAcion)
+    this.getTodayData(this.today_start, this.today_end, this.selectedData.station, 'refuel_overview', this.refuelOverviewAcion)
   },
   mounted () {
 

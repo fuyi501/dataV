@@ -54,6 +54,7 @@ export default {
           }
         },
         legend: {
+          // left: 'left',
           data: this.legendData
         },
         xAxis: {

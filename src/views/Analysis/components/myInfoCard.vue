@@ -1,5 +1,5 @@
 <template>
-  <Row :gutter="20" style="margin: 10px 10px;">
+  <Row :gutter="20" style="margin: 0px 10px;">
     <i-col :span="8" v-for="(infor, i) in inforCardData" :key="`infor-${i}`" style="height: 120px;padding-bottom: 10px;">
       <infor-card shadow :leftColor="infor.leftColor" :rightColor="infor.rightColor" :icon="infor.icon" :icon-size="56">
         <count-to :end="infor.count" count-class="count-style">
@@ -27,7 +27,7 @@ export default {
     InforCard,
   },
   props: {
-    selectedStation: {
+    selectedData: {
       type: Object
     }
   },
@@ -46,11 +46,11 @@ export default {
     }
   },
   watch: {
-    selectedStation: {
+    selectedData: {
       deep: true,
       handler (value) {
-        console.log('新的值：', value)
-        // this.getPass7DayData(this.pass7day, this.pass1day, this.selectedStation.station, constData.categoryData)
+        // console.log('新的值：', value)
+        // this.getPass7DayData(this.pass7day, this.pass1day, this.selectedData.station, constData.categoryData)
       }
     }
   },
@@ -58,14 +58,14 @@ export default {
     // 今日实时数据
     this.today_start = dayjs().startOf('day').format('YYYY-MM-DD HH:mm:ss')
     this.today_end = dayjs().format('YYYY-MM-DD HH:mm:ss')
-    this.getInforCardData(this.today_start, this.today_end, this.selectedStation.station, constData.categoryData)
+    this.getInforCardData(this.today_start, this.today_end, this.selectedData.station, constData.categoryData)
   },
   mounted () {
 
   },
   methods: {
     getInforCardData(start_time, end_time, station, category=[]) {
-      console.log('getInforCardData', start_time, end_time, station, category)
+      // console.log('getInforCardData', start_time, end_time, station, category)
       let nowHour = Number(end_time.slice(11, 13))
       let apiList = category.map((ele) => {
         return  axios.get('http://10.202.5.9:5123/datacenter/statistic', {
@@ -79,15 +79,15 @@ export default {
                   }
                 })
       })
-      // console.log('apiList: ', apiList)
+      // // console.log('apiList: ', apiList)
       axios.all(apiList)
         .then(axios.spread((...res) => {
-          console.log('能输出吗：', [...res])
+          // console.log('能输出吗：', [...res])
           let resData = [...res]
           for(let i=0; i<category.length; i++){
             this.inforCardData[i].count = resData[i].data.data.total
           }
-          console.log('最后的数据：', this.inforCardData)
+          // console.log('最后的数据：', this.inforCardData)
         }));
     }
   }

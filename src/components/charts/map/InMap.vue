@@ -39,7 +39,7 @@ export default {
       // 地图行政区域涂图层
       var polygonOverlay = new inMap.PolygonOverlay({
         tooltip: {
-            show: true,
+            show: false,
             formatter: function(params) {
                 return (
                 "<div style='background-color:#fff;color:red;margin:-10px !important;padding:10px !important;'>" +
@@ -78,20 +78,20 @@ export default {
             }
             },
             mouseOver: {
-            shadowColor: "rgba(0, 0, 0, 1)",
-            shadowBlur: 10,
-            borderWidth: 1.5,
-            label: {
-                color: "rgba(0, 0, 0, 1)"
-            }
+              shadowColor: "rgba(0, 0, 0, 1)",
+              // shadowBlur: 10,
+              borderWidth: 1.5,
+              label: {
+                  color: "rgba(0, 0, 0, 1)"
+              }
             },
-            selected: {
-            backgroundColor: "rgba(184,0,0,1)",
-            borderColor: "rgba(255,255,255,1)",
-            label: {
-                color: "rgba(255,255,255,1)"
-            }
-            },
+            // selected: {
+            // backgroundColor: "rgba(184,0,0,1)",
+            // borderColor: "rgba(255,255,255,1)",
+            // label: {
+            //     color: "rgba(255,255,255,1)"
+            // }
+            // },
             colors: [
                 "rgba(156,200,249,0.4)",
                 "rgba(93,158,247,0.4)",
