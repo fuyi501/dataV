@@ -4,7 +4,7 @@
     <Row type="flex" justify="center" :gutter="20">
       <Col :span="16">
         <Tabs type="card" :value="tabName" @on-click="handleTabClick">
-          <TabPane label="卸油区智能管控">
+          <TabPane label="卸油现场智能管控">
             <Row style="margin: 10px 0px;">
               <MyForm
                 :stationList="stationList"
@@ -29,57 +29,7 @@
                 style="text-align:left;margin:10px 0px;;"/>
             </Row>
           </TabPane>
-          <TabPane label="营业资金风险管控">
-            <Row style="margin: 10px 0px;">
-              <MyForm
-                :stationList="stationList"
-                :actionList="safeBoxActionList"
-                :levelList="levelList"
-                @handleSearchEvent="handleSearchEvent"
-                style="text-align:left;color:#fff"
-                >
-              </MyForm>
-            </Row>
-            <Row style="margin: 10px 0px;">
-              <MyTable
-                :tableData="safeboxTableData"
-                @handleTableClickEvent="handleTableClickEvent"
-              ></MyTable>
-              <Page
-                :total="safeboxTotal"
-                :current="safeboxCurrent"
-                :page-size="safeboxPageSize"
-                @on-change="handlePageChange"
-                show-total
-                style="text-align:left;margin:10px 0px;;"/>
-            </Row>
-          </TabPane>
-          <TabPane label="服务智能管控">
-            <Row style="margin: 10px 0px;">
-              <MyForm
-                :stationList="stationList"
-                :actionList="checkoutActionList"
-                :levelList="levelList"
-                @handleSearchEvent="handleSearchEvent"
-                style="text-align:left;color:#fff"
-                >
-              </MyForm>
-            </Row>
-            <Row style="margin: 10px 0px;">
-              <MyTable
-                :tableData="checkoutTableData"
-                @handleTableClickEvent="handleTableClickEvent"
-              ></MyTable>
-              <Page
-                :total="checkoutTotal"
-                :current="checkoutCurrent"
-                :page-size="checkoutPageSize"
-                @on-change="handlePageChange"
-                show-total
-                style="text-align:left;margin:10px 0px;;"/>
-            </Row>
-          </TabPane>
-          <TabPane label="现场智能管控">
+          <TabPane label="加油现场智能管控">
             <Row style="margin: 10px 0px;">
               <MyForm
                 :stationList="stationList"
@@ -104,6 +54,58 @@
                 style="text-align:left;margin:10px 0px;;"/>
             </Row>
           </TabPane>
+          <TabPane label="便利店智能管控">
+            <Row style="margin: 10px 0px;">
+              <MyForm
+                :stationList="stationList"
+                :actionList="checkoutActionList"
+                :levelList="levelList"
+                @handleSearchEvent="handleSearchEvent"
+                style="text-align:left;color:#fff"
+                >
+              </MyForm>
+            </Row>
+            <Row style="margin: 10px 0px;">
+              <MyTable
+                :tableData="checkoutTableData"
+                @handleTableClickEvent="handleTableClickEvent"
+              ></MyTable>
+              <Page
+                :total="checkoutTotal"
+                :current="checkoutCurrent"
+                :page-size="checkoutPageSize"
+                @on-change="handlePageChange"
+                show-total
+                style="text-align:left;margin:10px 0px;;"/>
+            </Row>
+          </TabPane>
+          <TabPane label="营业资金智能管控">
+            <Row style="margin: 10px 0px;">
+              <MyForm
+                :stationList="stationList"
+                :actionList="safeBoxActionList"
+                :levelList="levelList"
+                @handleSearchEvent="handleSearchEvent"
+                style="text-align:left;color:#fff"
+                >
+              </MyForm>
+            </Row>
+            <Row style="margin: 10px 0px;">
+              <MyTable
+                :tableData="safeboxTableData"
+                @handleTableClickEvent="handleTableClickEvent"
+              ></MyTable>
+              <Page
+                :total="safeboxTotal"
+                :current="safeboxCurrent"
+                :page-size="safeboxPageSize"
+                @on-change="handlePageChange"
+                show-total
+                style="text-align:left;margin:10px 0px;;"/>
+            </Row>
+          </TabPane>
+
+
         </Tabs>
       </Col>
 

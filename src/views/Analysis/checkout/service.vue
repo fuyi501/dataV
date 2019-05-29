@@ -1,5 +1,5 @@
 <template>
-  <div style="height:36rem;width:100%;margin-top:1rem;">
+  <div style="height:300px;width:100%;margin-top:5px;">
     <v-chart
       :options="option"
       :autoresize="true"
@@ -44,6 +44,10 @@ export default {
             restore: {},
             saveAsImage: {}
           }
+        },
+        grid: {
+          left: '4%',
+          right: '6%'
         },
         xAxis: {
           type: "category",
@@ -127,7 +131,7 @@ export default {
     axisDataList: {
       deep: true,
       handler (value) {
-        // console.log('&&&&&&&&&&&&&&& x轴新的值：', value)
+        // console.log('x轴新的值：', value)
         this.option.xAxis.data = value
       }
     }

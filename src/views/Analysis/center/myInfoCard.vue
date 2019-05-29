@@ -1,11 +1,11 @@
 <template>
-  <Row :gutter="20" style="margin: 0px 10px;">
-    <i-col :span="8" v-for="(infor, i) in inforCardData" :key="`infor-${i}`" style="height: 120px;padding-bottom: 10px;">
+  <Row :gutter="20">
+    <i-col :span="8" v-for="(infor, i) in inforCardData" :key="`infor-${i}`" style="height:100px;padding-bottom:8px;">
       <infor-card shadow :leftColor="infor.leftColor" :rightColor="infor.rightColor" :icon="infor.icon" :icon-size="56">
         <count-to :end="infor.count" count-class="count-style">
-          <span slot="right" style="margin-left:5px;color:#fff;">较昨日下降3次</span>
+          <!-- <span slot="right" style="margin-left:5px;color:#fff;">较昨日下降3次</span> -->
         </count-to>
-        <p style="color:#fff;font-size:18px;">{{ infor.title }}</p>
+        <div style="color:#fff;font-size:1.8rem;margin-top:-10px;">{{ infor.title }}</div>
       </infor-card>
     </i-col>
   </Row>
@@ -36,12 +36,12 @@ export default {
       today_start: '',
       today_end: '',
       inforCardData: [
-        { title: '加油区1违规次数', icon: 'md-bug', count: 657, leftColor: '#ed3f14', rightColor: '#ed3f14' },
-        { title: '加油区2违规次数', icon: 'md-information-circle', count: 12, leftColor: '#E46CBB', rightColor: '#E46CBB' },
-        { title: '收银台违规次数', icon: 'md-chatbubbles', count: 803, leftColor: '#2d8cf0', rightColor: '#2d8cf0' },
-        { title: '保险柜违规次数', icon: 'md-locate', count: 232, leftColor: '#19be6b', rightColor: '#19be6b' },
-        { title: '卸油口违规次数', icon: 'md-help-circle', count: 142, leftColor: '#ff9900', rightColor: '#ff9900' },
-        { title: '服务总人数', icon: 'ios-browsers', count: 14, leftColor: '#9A66E4', rightColor: '#9A66E4' }
+        { title: '本站总服务评分', icon: 'ios-browsers', count: 14, leftColor: '#9A66E4', rightColor: '#9A66E4' },
+        { title: '加油区服务评分', icon: 'md-information-circle', count: 12, leftColor: '#E46CBB', rightColor: '#E46CBB' },
+        { title: '收银台服务评分', icon: 'md-bug', count: 57, leftColor: '#ed3f14', rightColor: '#ed3f14' },
+        { title: '加油区服务车辆总数', icon: 'md-locate', count: 32, leftColor: '#19be6b', rightColor: '#19be6b' },
+        { title: '收银台服务总人数', icon: 'md-chatbubbles', count: 83, leftColor: '#2d8cf0', rightColor: '#2d8cf0' },
+        { title: '加油区平均服务时间', icon: 'md-help-circle', count: 42, leftColor: '#ff9900', rightColor: '#ff9900' }
       ],
     }
   },

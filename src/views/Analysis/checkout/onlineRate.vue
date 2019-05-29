@@ -1,5 +1,5 @@
 <template>
-  <div style="height:300px;width:100%;margin-top:5px">
+  <div style="height:220px;width:100%;margin-top:5px">
     <v-chart
       :options="option"
       :autoresize="true"
@@ -13,10 +13,7 @@
 */
 export default {
   props: {
-    servicePersonsData: {
-      type: Array
-    },
-    enterPersonsData: {
+    onlineRateData: {
       type: Array
     },
     axisDataList: {
@@ -27,14 +24,14 @@ export default {
     return {
       option: {
         title: {
-          text: "收银台进店人数和服务人数"
+          text: "站长在线率"
         },
         tooltip: {
           trigger: "axis"
         },
-        legend: {
-          data: ["进店人数", "服务人数"]
-        },
+        // legend: {
+        //   data: ["在线率"]
+        // },
         toolbox: {
           show: true,
           feature: {
@@ -54,30 +51,17 @@ export default {
         },
         yAxis: [{
           type: "value",
-          name: '人数',
+          // max: 100,
+          // name: '在线率',
           axisLabel: {
-            formatter: "{value} 人"
+            formatter: "{value}%"
           }
         }],
         series: [
           {
-            name: "进店人数",
+            name: "在线率",
             type: "line",
-            data: this.enterPersonsData,
-            // markPoint: {
-            //   data: [
-            //     { type: "max", name: "最大值" },
-            //     { type: "min", name: "最小值" }
-            //   ]
-            // },
-            markLine: {
-              data: [{ type: "average", name: "平均值" }]
-            }
-          },
-          {
-            name: "服务人数",
-            type: "line",
-            data: this.servicePersonsData,
+            data: this.onlineRateData,
             // markPoint: {
             //   data: [
             //     { type: "max", name: "最大值" },
@@ -93,18 +77,11 @@ export default {
     }
   },
   watch: {
-    enterPersonsData: {
+    onlineRateData: {
       deep: true,
       handler (value) {
         // console.log('进店人数新的值：', value)
         this.option.series[0].data = value
-      }
-    },
-    servicePersonsData: {
-      deep: true,
-      handler (value) {
-        // console.log('服务人数新的值：', value)
-        this.option.series[1].data = value
       }
     },
     axisDataList: {
@@ -114,7 +91,7 @@ export default {
       }
     }
   }
-}
+};
 </script>
 
 <style lang="less">

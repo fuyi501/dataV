@@ -1,6 +1,6 @@
 <template>
   <div class="mymap">
-    <div id="allmap" style="width:100%;height:600px"> </div>
+    <div id="allmap" style="width:100%;height:1000px"> </div>
   </div>
 </template>
 
@@ -32,7 +32,7 @@ export default {
           value: 7, //当前地图级别
           show: true, //放大缩小按钮显示
           max: 18,
-          min: 5
+          min: 12
         },
       })
 
@@ -216,7 +216,7 @@ export default {
 
       inmap.add(PointAnimationOverlay);
       polygonOverlay.setData(shanxi.shanxi)
-      inmap.add(polygonOverlay);
+      // inmap.add(polygonOverlay);
       inmap.add(moveLineOverlay);
 
       // overlay.setData(shanxi.shanxi)
@@ -231,8 +231,8 @@ export default {
   height: 100%;
 }
 .mymap {
-  height: 600px;
-  width: 96%;
+  height: 1000px;
+  width: 100%;
   border: 2px solid #084272;
   margin: 0 auto;
 }

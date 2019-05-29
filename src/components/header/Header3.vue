@@ -1,22 +1,22 @@
 <template>
 <Row type="flex" justify="center" align="bottom">
-  <Col :span="8"></Col>
-  <Col :span="8">
+  <Col :span="7"></Col>
+  <Col :span="10">
     <div class="layout-title">
-      中国石油智能现场AI管控系统
+      中国石油陕西销售公司加油站现场 AI 管控系统
     </div>
   </Col>
-  <Col :span="8" >
+  <Col :span="7" >
     <Menu mode="horizontal" active-name="1">
       <div class="layout-nav">
         <MenuItem name="1" to="/">
           <Icon type="md-home" />
           主页
         </MenuItem>
-        <MenuItem name="2" to="/monitor">
+        <!-- <MenuItem name="2" to="/monitor">
           <Icon type="md-videocam" />
           智能监控
-        </MenuItem>
+        </MenuItem> -->
         <MenuItem name="4" to="/analysis">
           <!-- <Icon type="md-analytics" /> -->
           <Icon type="md-stats" />
@@ -25,10 +25,6 @@
         <MenuItem name="3" to="/events">
           <Icon type="md-alert" />
           报警事件
-        </MenuItem>
-        <MenuItem name="5" to="/test">
-          <Icon type="md-alert" />
-          测试页面
         </MenuItem>
       </div>
     </Menu>

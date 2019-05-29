@@ -72,7 +72,7 @@ export default {
       option: {
         // backgroundColor: "#031f2d",
         title: {
-          text: "违规总数",
+          text: "现场管理评分",
           left: "center",
           top: "53%",
           padding: [24, 0],

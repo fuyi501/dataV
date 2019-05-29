@@ -5,7 +5,7 @@
     :legendData="todayData.legendData"
     :seriesData="[...todayData.seriesData]"
     :boundaryGap="false"
-    style="margin:0 auto;" lineWidth="96%" lineHeight="400px"
+    style="margin:0 auto;" lineWidth="96%" lineHeight="320px"
   />
 </template>
 <script>

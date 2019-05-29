@@ -1,7 +1,7 @@
 <template>
   <div class="home" :style="{height: contentHeight}">
     <!-- 选择站点和时间 -->
-    <Row type="flex" justify="start" align="middle" style="margin: -20px 0px 0px;height:70px;">
+    <Row type="flex" justify="start" align="middle" style="margin: -20px 0px 0px;height:55px;">
       <Col>
         <Form :model="selectedData" :label-width="100" inline style="padding-top:15px;">
           <FormItem label="选择站点：">
@@ -21,34 +21,17 @@
     </Row>
 
     <!-- 左侧 显示收银台信息 -->
-    <Row type="flex" justify="start" :gutter="20">
-      <Col :span="8">
+    <Row type="flex" justify="start" :gutter="15">
+      <Col :span="7">
         <checkout :selectedData="selectedData"></checkout>
       </Col>
-
       <!-- 中间 显示总信息，保险柜，卸油口数据-->
       <Col :span="10" style="">
-        <my-info-card :selectedData="selectedData"></my-info-card>
-        <!-- 今日违规事件总体统计 -->
-        <Row style="margin: 10px 0px;">
-          <div class="charts-border">
-            <today-data-line :selectedData="selectedData"></today-data-line>
-          </div>
-        </Row>
-        <!-- 保险柜数据 和 卸油口 数据 -->
-        <Row style="margin: 20px 0px;height:" class="charts-border" type="flex" justify="start" :gutter="10" >
-          <Col :span="12">
-            <safe-box :selectedData="selectedData"></safe-box>
-          </Col>
-          <Col :span="12">
-            <unload :selectedData="selectedData"></unload>
-          </Col>
-        </Row>
+        <center :selectedData="selectedData"></center>
       </Col>
-
       <!-- 右侧 显示加油区和卸油口数据-->
-      <Col :span="6">
-        <div class="charts-border" style="">
+      <Col :span="7">
+        <div class="charts-border">
           <refuel :selectedData="selectedData"></refuel>
         </div>
       </Col>
@@ -59,23 +42,15 @@
 <script>
 import constData from '@/util/constData' // 保存的常量
 
-// 页面组件
-import MyInfoCard from './components/myInfoCard'
-import TodayDataLine from './components/todayDataLine.vue'
-
-import SafeBox from './safebox/safebox'
-import Unload from './unload/unload'
 import Checkout from './checkout/checkout'
+import Center from './center/center'
 import Refuel from './refuel/refuel'
 
 export default {
   name: "analysis",
   components: {
-    TodayDataLine,
-    MyInfoCard,
-    SafeBox,
-    Unload,
     Checkout,
+    Center,
     Refuel
   },
   data() {

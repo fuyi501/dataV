@@ -1,12 +1,12 @@
 <template>
   <div style="width:100%;height:470px;">
     <!-- <p>卸油口</p> -->
-    <unload-count
+    <!-- <unload-count
       :xieyoukouOpen="xieyoukouOpen"
       :youguancheDao="youguancheDao"
       :xiaofang="xiaofang"
       >
-    </unload-count>
+    </unload-count> -->
     <violations style="width:100%;height:360px;"
       :heguiData="heguiData"
       :weiguiData="weiguiData"
@@ -27,12 +27,12 @@ import dayjs from 'dayjs'
 import constData from '@/util/constData' // 保存的常量
 
 import Violations from './violations'
-import UnloadCount from './unloadCount'
+// import UnloadCount from './unloadCount'
 
 export default {
   components: {
     Violations,
-    UnloadCount
+    // UnloadCount
   },
   props: {
     // 选择的站点名称

@@ -1,5 +1,5 @@
 <template>
-<div class="charts-border" style="height:400px;width:96%;margin-top:10px;">
+<div class="charts-border" style="height:400px;width:100%;">
   <v-chart
       :options="option"
       :autoresize="true"

@@ -27,14 +27,14 @@ export default {
     return {
       option: {
         title: {
-          text: "收银台进店人数和服务人数"
+          text: "加油岛服务时间"
         },
         tooltip: {
           trigger: "axis"
         },
-        legend: {
-          data: ["进店人数", "服务人数"]
-        },
+        // legend: {
+        //   data: ["在线率"]
+        // },
         toolbox: {
           show: true,
           feature: {
@@ -50,34 +50,23 @@ export default {
         xAxis: {
           type: "category",
           boundaryGap: false,
-          data: this.axisDataList,
+          // data: this.axisDataList,
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
         },
         yAxis: [{
           type: "value",
-          name: '人数',
+          // max: 100,
+          // name: '在线率',
           axisLabel: {
-            formatter: "{value} 人"
+            formatter: "{value}"
           }
         }],
         series: [
           {
-            name: "进店人数",
+            name: "在线率",
             type: "line",
-            data: this.enterPersonsData,
-            // markPoint: {
-            //   data: [
-            //     { type: "max", name: "最大值" },
-            //     { type: "min", name: "最小值" }
-            //   ]
-            // },
-            markLine: {
-              data: [{ type: "average", name: "平均值" }]
-            }
-          },
-          {
-            name: "服务人数",
-            type: "line",
-            data: this.servicePersonsData,
+            // data: this.enterPersonsData,
+            data: [82, 92, 91, 34, 90, 30, 20],
             // markPoint: {
             //   data: [
             //     { type: "max", name: "最大值" },
@@ -100,13 +89,6 @@ export default {
         this.option.series[0].data = value
       }
     },
-    servicePersonsData: {
-      deep: true,
-      handler (value) {
-        // console.log('服务人数新的值：', value)
-        this.option.series[1].data = value
-      }
-    },
     axisDataList: {
       deep: true,
       handler (value) {
@@ -114,7 +96,7 @@ export default {
       }
     }
   }
-}
+};
 </script>
 
 <style lang="less">

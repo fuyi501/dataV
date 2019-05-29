@@ -1,52 +1,26 @@
 <template>
-  <div class="home" :style="{height: '3000px'}">
-    <!-- 左侧 -->
+  <div class="home1" :style="{height: contentHeight}">
+
+    <div style="width:800px;height:400px;position:absolute;top:70%;left:30%;background-color: rgba(0, 0, 0, 0.3);z-index:999;">
+      <mytable2></mytable2>
+    </div>
+
+    <div style="width:600px;height:400px;position:absolute;top:10%;left:1%;z-index:999;">
+      <weigui2></weigui2>
+    </div>
+    <div style="width:600px;height:400px;position:absolute;top:50%;left:1%;z-index:999;">
+      <river></river>
+    </div>
+
+    <div style="width:600px;height:400px;position:absolute;top:10%;left:70%;z-index:999;">
+      <Cars></Cars>
+    </div>
+    <div style="width:600px;height:400px;position:absolute;top:50%;left:70%;background-color: rgba(0, 0, 0, 0.3);z-index:999;">
+      <persons2></persons2>
+    </div>
+
     <Row type="flex" justify="start">
-      <Col :span="6">
-        <Row >
-          <weigui2></weigui2>
-          <!-- <pass7-day-data-line></pass7-day-data-line> -->
-        </Row>
-        <Row style="margin: 20px 0px;">
-          <river></river>
-          <!-- <pass7-day-data-bar></pass7-day-data-bar> -->
-        </Row>
-        <Row style="margin: 20px 0px;">
-
-        </Row>
-      </Col>
-
-      <!-- 中间 -->
-      <Col :span="12">
-    <Button @click="handleClick">我是按钮</Button>
-
-        <Row >
-          <!-- <MapGeo :mapData="map"></MapGeo> -->
-          <InMap></InMap>
-        </Row>
-        <Row style="margin: 20px 0px;">
-          <today-data-line></today-data-line>
-        </Row>
-      </Col>
-
-      <!-- 右侧 -->
-      <Col :span="6">
-        <Row>
-          <persons2></persons2>
-          <Cars></Cars>
-          <!-- <persons></persons> -->
-        </Row>
-        <Row style="margin: 20px 0px;">
-        </Row>
-        <Row style="margin: 20px 0px;">
-        </Row>
-      </Col>
-    </Row>
-    <Row type="flex" justify="center" :gutter="20">
-      <Col :span="6"><unload-event-pie class="charts-border"></unload-event-pie></Col>
-      <Col :span="6"><checkout-event-pie class="charts-border"></checkout-event-pie></Col>
-      <Col :span="6"><safe-box-event-pie class="charts-border"></safe-box-event-pie></Col>
-      <Col :span="6"><refuel-overview-event-pie class="charts-border"></refuel-overview-event-pie></Col>
+      <InMap></InMap>
     </Row>
   </div>
 </template>
@@ -70,6 +44,7 @@ import Persons2 from './service/person2'
 import Cars from './service/cars'
 import Weigui2 from './service/weigui2'
 
+import Mytable2 from '@/components/tables/mytable2'
 
 export default {
   name: "home",
@@ -87,7 +62,9 @@ export default {
     Persons,
     Persons2,
     Cars,
-    Weigui2
+    Weigui2,
+
+    Mytable2
   },
   data() {
     return {
@@ -119,7 +96,7 @@ export default {
 
 <style>
 .home {
-  padding: 40px 40px;
+  padding: 40px 20px;
   /* margin: -20px 0px; */
   /* background-color: #0a4271; */
   /* background-color: #0b0f34 !important; */
@@ -128,6 +105,18 @@ export default {
   /* background-size: 100% 100%; */
   /* box-sizing: border-box; */
   height: 3500px;
+}
+.home1 {
+  padding: 20px 0px 0px;
+  /* margin: -20px 0px; */
+  /* background-color: #0a4271; */
+  /* background-color: #0b0f34 !important; */
+  /* background-color: #01237C !important; */
+  background: url('../../assets/bg.jpg') center;
+  /* background-size: 100% 100%; */
+  /* box-sizing: border-box; */
+  /* height: 3500px; */
+  border: 0px;
 }
 </style>
 
