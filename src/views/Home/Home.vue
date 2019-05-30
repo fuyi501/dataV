@@ -1,22 +1,22 @@
 <template>
   <div class="home1" :style="{height: contentHeight}">
-
+<!--
     <div style="width:800px;height:400px;position:absolute;top:70%;left:30%;background-color: rgba(0, 0, 0, 0.3);z-index:999;">
       <mytable2></mytable2>
-    </div>
+    </div> -->
 
-    <div style="width:600px;height:400px;position:absolute;top:10%;left:1%;z-index:999;">
+    <div style="width:550px;height:400px;position:absolute;top:10%;left:1%;z-index:999;">
       <weigui2></weigui2>
     </div>
-    <div style="width:600px;height:400px;position:absolute;top:50%;left:1%;z-index:999;">
+    <div style="width:550px;height:400px;position:absolute;top:50%;left:1%;z-index:999;">
       <river></river>
     </div>
 
-    <div style="width:600px;height:400px;position:absolute;top:10%;left:70%;z-index:999;">
+    <div class="charts-border" style="width:550px;height:360px;position:absolute;top:10%;left:73%;z-index:999;">
       <Cars></Cars>
     </div>
-    <div style="width:600px;height:400px;position:absolute;top:50%;left:70%;background-color: rgba(0, 0, 0, 0.3);z-index:999;">
-      <persons2></persons2>
+    <div class="charts-border" style="width:550px;height:360px;position:absolute;top:45%;left:73%;z-index:999;">
+      <person></person>
     </div>
 
     <Row type="flex" justify="start">
@@ -40,6 +40,7 @@ import RefuelOverviewEventPie from './components/refuelOverviewEventPie'
 
 import River from './service/river'
 import Persons from './service/persons'
+import Person from './service/person'
 import Persons2 from './service/person2'
 import Cars from './service/cars'
 import Weigui2 from './service/weigui2'
@@ -59,7 +60,7 @@ export default {
     InMap,
 
     River,
-    Persons,
+    Person,
     Persons2,
     Cars,
     Weigui2,
@@ -89,7 +90,8 @@ export default {
     handleClick() {
       console.log('我点击了')
       this.$router.push('test')
-    }
+    },
+
   }
 };
 </script>

@@ -8,12 +8,12 @@ export default {
     { value: 'caotan', label: '草滩路加油站' }
   ],
   stationList2: {
-    'xiwan': '西万路加油站',
-    'ximen': '西门加油站',
-    'mingdemen': '明德门加油站',
-    'zhuhong': '朱宏路加油站',
-    'fengchengshilu': '凤城十路加油站',
-    'caotan': '草滩路加油站'
+    'xiwan': '西万站',
+    'ximen': '西门站',
+    'mingdemen': '明德门站',
+    'zhuhong': '朱宏路站',
+    'fengchengshilu': '凤城十路站',
+    'caotan': '草滩站'
   },
   // 事件表格查询的时候一个对应关系
   stationEventList: [

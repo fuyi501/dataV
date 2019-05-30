@@ -61,7 +61,7 @@ export default {
 
       countData: [ // 违规事件分布
         { title: '服务总人数', value: '0 人'},
-        { title: '服务总时间', value: '0 分钟'},
+        { title: '累计服务总时间', value: '0 分钟'},
         { title: '平均服务时间', value: '0 分钟'},
         { title: '违规率', value: '10 %'}
       ],
@@ -71,8 +71,8 @@ export default {
 
       enterPersonsData: [], // 进店人数
 
-      onlineAxisData: [],
-      onlineRateData: [],
+      onlineAxisData: [], //站长在线率
+      onlineRateData: [], //站长在线率数据
 
       checkoutAction: ['单手', '双手接递', '服务超时'],
       eventSeriesData: [ // 违规事件分布
@@ -104,7 +104,7 @@ export default {
 
           this.getCheckOutData(this.groupType, '1', this.startTime, this.endTime, this.selectedData.station, 'checkout')
           this.getPersonsData(this.groupType, '1', this.startTime, this.endTime, this.selectedData.station, 'checkout')
-          this.getEventData(this.groupType, this.startTime, this.endTime, this.selectedData.station, 'checkout', this.checkoutAction)
+          // this.getEventData(this.groupType, this.startTime, this.endTime, this.selectedData.station, 'checkout', this.checkoutAction)
 
           let onlineStartTime = dayjs().subtract(7, 'day').startOf('day').format('YYYY-MM-DD HH:mm:ss')
           let onlineEndTime = dayjs().startOf('day').format('YYYY-MM-DD HH:mm:ss')
@@ -117,6 +117,7 @@ export default {
           this.enterPersonsData = []
           this.axisDataList = []
           this.onlineRateData = []
+
           this.groupType = 'day' // 按天查询
           this.startTime = dayjs().subtract(7, 'day').startOf('day').format('YYYY-MM-DD HH:mm:ss')
           this.endTime = dayjs().startOf('day').format('YYYY-MM-DD HH:mm:ss')
@@ -127,9 +128,30 @@ export default {
 
           this.getCheckOutData(this.groupType, '1', this.startTime, this.endTime, this.selectedData.station, 'checkout')
           this.getPersonsData(this.groupType, '1', this.startTime, this.endTime, this.selectedData.station, 'checkout')
-          this.getEventData(this.groupType, this.startTime, this.endTime, this.selectedData.station, 'checkout', this.checkoutAction)
+          // this.getEventData(this.groupType, this.startTime, this.endTime, this.selectedData.station, 'checkout', this.checkoutAction)
 
           this.getOnlineRate(this.startTime, this.endTime, this.selectedData.station)
+        }else if(this.selectedData.dateTime === 'month') {
+          // console.log('查询一个月的数据')
+          this.servicePersonsData = []
+          this.avgServiceTimeData = []
+          this.enterPersonsData = []
+          this.axisDataList = []
+          this.onlineRateData = []
+          this.groupType = 'day' // 按天查询
+          this.startTime = dayjs().startOf('month').format('YYYY-MM-DD HH:mm:ss')
+          this.endTime = dayjs().format('YYYY-MM-DD HH:mm:ss')
+          for(let i=Number(dayjs().format('DD'))-1; i>0; i--) {
+            this.axisDataList.push(dayjs().subtract(i, 'day').startOf('day').format('MM-DD'))
+          }
+          console.log('查询当月的数据:', this.startTime, this.endTime, this.axisDataList)
+
+          this.getCheckOutData(this.groupType, '1', this.startTime, this.endTime, this.selectedData.station, 'checkout')
+          this.getPersonsData(this.groupType, '1', this.startTime, this.endTime, this.selectedData.station, 'checkout')
+
+          let onlineStartTime = dayjs().subtract(7, 'day').startOf('day').format('YYYY-MM-DD HH:mm:ss')
+          let onlineEndTime = dayjs().startOf('day').format('YYYY-MM-DD HH:mm:ss')
+          this.getOnlineRate(onlineStartTime, onlineEndTime, this.selectedData.station)
         }
       }
     }
@@ -155,7 +177,7 @@ export default {
 
   },
   methods: {
-    // 获取收银台服务人数，服务时间
+    // 获取收银台服务人数，服务时间，违规率
     getCheckOutData(groupType, interval, start_time, end_time, station, category) {
       axios.get('http://10.202.5.9:5123/datacenter/service/statistic', {
         params: {
@@ -184,6 +206,19 @@ export default {
           this.avgServiceTimeData.push(resDataGroup[i].average_time)
         }
       })
+
+      // 查询收银台违规率
+      axios.get('http://10.202.5.9:5123/datacenter/violate/now', {
+        params: {
+          station,
+          category
+        }
+      }).then((res) => {
+        console.log('收银台违规率：', res)
+        for(let i in res.data.data[station]) {
+          this.countData[3].value = (res.data.data[station][i]*100).toFixed(2) + ' %'
+        }
+      })
     },
     // 获取进店人数
     getPersonsData(groupType, interval, start_time, end_time, station, category) {
@@ -197,7 +232,7 @@ export default {
           station
         }
       }).then((res) => {
-        // console.log('进店人数', res)
+        console.log('收银台进店人数', res)
           let enterResData = res.data.data.count_group
           for(let i in enterResData){
             this.enterPersonsData.push(enterResData[i])
@@ -245,7 +280,7 @@ export default {
         console.log('站长在线率', res)
         let onlineRate = res.data.data
         for(let i in onlineRate) {
-          console.log(onlineRate[i])
+          // console.log(onlineRate[i])
           this.onlineRateData.push(onlineRate[i].toFixed(2)*100)
         }
       })

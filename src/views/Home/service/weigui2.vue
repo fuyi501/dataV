@@ -8,33 +8,19 @@
 </div>
 </template>
 <script>
+import axios from 'axios'
+import dayjs from 'dayjs'
+import constData from '@/util/constData' // 保存的常量
+
 var scale = 1;
 var echartData = [
-  {
-    value: 2154,
-    name: "西万路"
-  },
-  {
-    value: 3854,
-    name: "西门"
-  },
-  {
-    value: 3515,
-    name: "明德门"
-  },
-  {
-    value: 3515,
-    name: "草滩路"
-  },
-  {
-    value: 3854,
-    name: "朱宏路"
-  },
-  {
-    value: 2154,
-    name: "凤城十路"
-  }
-];
+  {name: '西万路', en: 'xiwan', value: 0, score: 0},
+  {name: '西门', en: 'ximen', value: 0, score: 0},
+  {name: '明德门', en: 'mingdemen', value: 0, score: 0},
+  {name: '草滩路', en: 'caotan', value: 0, score: 0},
+  {name: '朱宏路', en: 'zhuhong', value: 0, score: 0},
+  {name: '凤城十路', en: 'fengchengshilu', value: 0, score: 0}
+]
 var rich = {
   yellow: {
     color: "#ffc72b",
@@ -74,7 +60,7 @@ export default {
         title: {
           text: "现场管理评分",
           left: "center",
-          top: "53%",
+          top: "50%",
           padding: [24, 0],
           textStyle: {
             color: "#fff",
@@ -85,18 +71,24 @@ export default {
         legend: {
           selectedMode: false,
           formatter: function(name) {
-            var total = 0; //各科正确率总和
-            var averagePercent; //综合正确率
+            let total = 0; // 总的评分
+            let count = 0; // 有数据的有多少个
             echartData.forEach(function(value, index, array) {
-              total += value.value;
-            });
+              // console.log(value, typeof(value.score))
+              if(typeof(value.score)==='number'){
+                count++
+                total += value.score
+              }
+            })
+            // console.log('计算：', total, count)
+            total = (total/count).toFixed(2)
             return "{total|" + total + "}";
           },
           data: [echartData[0].name],
           // data: ['高等教育学'],
           // itemGap: 50,
           left: "center",
-          top: "center",
+          top: "40%", // 中间分数位置
           icon: "none",
           align: "center",
           textStyle: {
@@ -111,31 +103,33 @@ export default {
             type: "pie",
             radius: ["42%", "50%"],
             hoverAnimation: false,
-            color: [
-              "#c487ee",
-              "#deb140",
-              "#49dff0",
-              "#034079",
-              "#6f81da",
-              "#00ffb4"
-            ],
+            // color: [
+            //   "#c487ee",
+            //   "#deb140",
+            //   "#49dff0",
+            //   "#034079",
+            //   "#6f81da",
+            //   "#00ffb4"
+            // ],
             label: {
               normal: {
-                formatter: function(params, ticket, callback) {
-                  var total = 0; //考生总数量
-                  var percent = 0; //考生占比
-                  echartData.forEach(function(value, index, array) {
-                    total += value.value;
-                  });
-                  percent = (params.value / total * 100).toFixed(1);
+                formatter: function(params) {
+                  // var total = 0; //服务平均分
+                  // var percent = 0; //
+                  // echartData.forEach(function(value, index, array) {
+                  //   total += value.value;
+                  // });
+                  // percent = (params.value / total * 100).toFixed(1);
+                  // console.log(params)
+                  // let
                   return (
                     "{white|" +
                     params.name +
                     "}\n{hr|}\n{yellow|" +
-                    params.value +
-                    "}\n{blue|" +
-                    percent +
-                    "%}"
+                    params.data.score +
+                    "}{blue|" +
+                    // percent +
+                    "分}"
                   );
                 },
                 rich: rich
@@ -153,12 +147,37 @@ export default {
             data: echartData
           }
         ]
-      }
-    };
+      },
+
+    }
   },
   watch: {},
-  mounted() {},
-  methods: {}
+  mounted() {
+    this.getCheckoutPersons()
+    setInterval(()=>{
+      this.getCheckoutPersons()
+    }, 3000)
+  },
+  methods: {
+    // 获取服务评分
+    getCheckoutPersons(station='') {
+      axios.get('http://10.202.5.9:5123/datacenter/composite_index/now', {
+          params: {
+            station: station
+          }
+        }).then((res) => {
+        console.log('主页---------服务评分查询：', res)
+        let resData = res.data.data
+        for(let i in echartData){
+          if(resData[echartData[i].en] !== undefined){
+            echartData[i].score = resData[echartData[i].en].score
+          }else {
+            echartData[i].score = '暂无'
+          }
+        }
+      })
+    }
+  }
 };
 </script>
 

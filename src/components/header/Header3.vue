@@ -70,7 +70,7 @@ export default {
     // width: 600px;
     height: 6rem;
     line-height: 6rem;
-    font-size: 4rem;
+    font-size: 3.6rem;
     font-weight: bold;
     text-align: center;
     color: #4bdaff;

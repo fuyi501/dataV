@@ -9,17 +9,14 @@
 </template>
 <script>
 /*
-收银台进店人数，服务人数对比
+加油岛服务时间
 */
 export default {
   props: {
-    servicePersonsData: {
+    refuelServiceName: {
       type: Array
     },
-    enterPersonsData: {
-      type: Array
-    },
-    axisDataList: {
+    refuelServiceTime: {
       type: Array
     }
   },
@@ -51,7 +48,7 @@ export default {
           type: "category",
           boundaryGap: false,
           // data: this.axisDataList,
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          data: this.refuelServiceName,
         },
         yAxis: [{
           type: "value",
@@ -63,10 +60,10 @@ export default {
         }],
         series: [
           {
-            name: "在线率",
+            // name: "在线率",
             type: "line",
             // data: this.enterPersonsData,
-            data: [82, 92, 91, 34, 90, 30, 20],
+            data: this.refuelServiceTime,
             // markPoint: {
             //   data: [
             //     { type: "max", name: "最大值" },
@@ -82,19 +79,6 @@ export default {
     }
   },
   watch: {
-    enterPersonsData: {
-      deep: true,
-      handler (value) {
-        // console.log('进店人数新的值：', value)
-        this.option.series[0].data = value
-      }
-    },
-    axisDataList: {
-      deep: true,
-      handler (value) {
-        this.option.xAxis.data = value
-      }
-    }
   }
 };
 </script>

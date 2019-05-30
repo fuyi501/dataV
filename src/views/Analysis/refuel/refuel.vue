@@ -12,8 +12,9 @@
     </service-cars>
 
     <refuel-time
-      :axisDataList="axisDataList"
-      :jamIndex="jamIndex"></refuel-time>
+      :refuelServiceName="refuelServiceName"
+      :refuelServiceTime="refuelServiceTime">
+    </refuel-time>
   </div>
 </template>
 
@@ -54,7 +55,10 @@ export default {
       jamIndex: [], // 拥堵指数
 
       serviceCarsData: [],
-      serviceTimeData: []
+      serviceTimeData: [],
+
+      refuelServiceName: [],
+      refuelServiceTime: []
     }
   },
   watch: {
@@ -68,6 +72,8 @@ export default {
           this.jamIndex = []
           this.serviceCarsData = []
           this.serviceTimeData = []
+          this.refuelServiceName = []
+          this.refuelServiceTime = []
 
           this.groupType = 'hour' // 按小时查询
           this.axisDataList = ["00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"]
@@ -83,6 +89,8 @@ export default {
           this.jamIndex = []
           this.serviceCarsData = []
           this.serviceTimeData = []
+          this.refuelServiceName = []
+          this.refuelServiceTime = []
 
           this.groupType = 'day' // 按天查询
           this.startTime = dayjs().subtract(7, 'day').startOf('day').format('YYYY-MM-DD HH:mm:ss')
@@ -91,6 +99,25 @@ export default {
             this.axisDataList.push(dayjs().subtract(i, 'day').startOf('day').format('MM-DD'))
           }
           // console.log('查询近一周的数据:', this.startTime, this.endTime, this.axisDataList)
+          this.getJamData(this.groupType, '1', this.startTime, this.endTime, this.selectedData.station)
+          this.getServiceCarsData(this.groupType, '1', this.startTime, this.endTime, this.selectedData.station, 'refuel')
+
+        }else if(this.selectedData.dateTime === 'month') {
+          console.log('查询一个月的数据')
+          this.axisDataList = []
+          this.jamIndex = []
+          this.serviceCarsData = []
+          this.serviceTimeData = []
+          this.refuelServiceName = []
+          this.refuelServiceTime = []
+
+          this.groupType = 'day' // 按天查询
+          this.startTime = dayjs().startOf('month').format('YYYY-MM-DD HH:mm:ss')
+          this.endTime = dayjs().format('YYYY-MM-DD HH:mm:ss')
+          for(let i=Number(dayjs().format('DD'))-1; i>0; i--) {
+            this.axisDataList.push(dayjs().subtract(i, 'day').startOf('day').format('MM-DD'))
+          }
+          // console.log('查询一个月的数据:', this.startTime, this.endTime, this.axisDataList)
           this.getJamData(this.groupType, '1', this.startTime, this.endTime, this.selectedData.station)
           this.getServiceCarsData(this.groupType, '1', this.startTime, this.endTime, this.selectedData.station, 'refuel')
 
@@ -106,7 +133,7 @@ export default {
 
     this.getJamData(this.groupType, '1', this.startTime, this.endTime, this.selectedData.station)
     this.getServiceCarsData(this.groupType, '1', this.startTime, this.endTime, this.selectedData.station, 'refuel')
-
+    this.getRefuelTimeData(this.selectedData.station)
   },
   mounted () {
 
@@ -160,7 +187,34 @@ export default {
         }
 
       })
+    },
+    // 获取加油岛服务时间
+    getRefuelTimeData(station, channel='') {
+      console.log('getRefuelTimeData', station, channel)
+
+      axios.get('http://10.202.5.9:5123/datacenter/refuel_service/now', {
+        params: {
+          station,
+          // channel: '4'
+        }
+      }).then((res) => {
+        console.log('获取加油岛服务时间:', res.data.data)
+        let resData = res.data.data[station]
+
+        let sTime = dayjs().startOf('day')
+        let eTime = dayjs()
+        let sumTime = eTime.diff(sTime, 'minute')
+        console.log(eTime.diff(sTime, 'minute'))
+
+        for(let i in resData){
+          this.refuelServiceName.push(i + '号加油机')
+          this.refuelServiceTime.push((resData[i]*sumTime/60).toFixed(2))
+        }
+        console.log(this.refuelServiceName, this.refuelServiceTime)
+
+      })
     }
+
   }
 }
 </script>
